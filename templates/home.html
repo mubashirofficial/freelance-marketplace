@@ -1,0 +1,635 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+<title>BidLance</title>
+
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:100,300,400,500,700,900&amp;display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="{% static 'assets/img/favicon1.png' %}" type="image/x-icon">
+
+<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+
+<link rel="stylesheet" href="{% static 'assets/plugins/fontawesome/css/fontawesome.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/plugins/fontawesome/css/all.min.css' %}">
+
+<link rel="stylesheet" href="{% static 'assets/css/owl.carousel.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/owl.theme.default.min.css' %}">
+
+<link rel="stylesheet" href="{% static 'assets/plugins/select2/css/select2.min.css' %}">
+
+<link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/line-awesome.css' %}">
+<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+<link rel="stylesheet" href="{% static 'css/daterangepicker.css' %}">
+<link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
+<link rel="stylesheet" href="{% static 'css/chosen.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+<style>
+.alert {
+  padding: 12px;
+  background-color: #66ba73;
+  color: white;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+
+</style>
+
+</head>
+<body class="home-page">
+
+<div class="main-wrapper">
+
+
+<header class="header-area">
+    <div class="header-menu-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="menu-full-width">
+                        <div class="logo">
+                            <a href="/"><img src="{% static 'assets/img/mylogo.png' %}" alt="logo"></a>
+                        </div><!-- end logo -->
+                        <div class="main-menu-content">
+                            <nav>
+                                <ul>
+                                    <li>
+                                        <a href="/">Home</a>
+                                    </li>
+                                    <li>
+                                        <a href="">About</a>
+                                    </li>
+                                    <li><a href="#">How It Works</a></li>
+                                    <li><a href="#">Terms of Use</a></li>
+                                </ul>
+                            </nav>
+                        </div><!-- end main-menu-content -->
+                        <div class="logo-right-content">
+                            <ul class="author-access-list">
+                                <li>
+                                    <a href="/login/signup" class="theme-btn">Login/SignUp</a>
+                                </li>
+                            </ul>
+                            <div class="side-menu-open">
+                                <span class="menu__bar"></span>
+                                <span class="menu__bar"></span>
+                                <span class="menu__bar"></span>
+                            </div><!-- end side-menu-open -->
+                        </div><!-- end logo-right-content -->
+                    </div><!-- end menu-full-width -->
+                </div><!-- end col-lg-12 -->
+            </div><!-- end row -->
+        </div><!-- end container-fluid -->
+    </div><!-- end header-menu-wrapper -->
+    <div class="side-nav-container">
+        <div class="humburger-menu">
+            <div class="humburger-menu-lines side-menu-close"></div><!-- end humburger-menu-lines -->
+        </div><!-- end humburger-menu -->
+        <div class="side-menu-wrap">
+            <ul class="side-menu-ul">
+                <li>
+                    <a href="#">Home</a>
+                </li>
+                 <li>
+                 <a href="#">About</a>
+                  </li>
+                <li><a href="#">How It Works</a></li>
+                <li><a href="#">Terms of Use</a></li>
+            </ul>
+            <div class="side-nav-button">
+                <a href="/login/signup" class="theme-btn">Login/SignUp</a>
+            </div><!-- end side-nav-button -->
+        </div><!-- end side-menu-wrap -->
+    </div><!-- end side-nav-container -->
+</header>
+
+{% block content %}
+<div class="section home-banner row-middle">
+<div class="container">
+<div class="row align-items-center">
+<div class="col-md-8 col-lg-7">
+<div class="banner-content">
+
+<h3>Trused by over 2M+ users</h3>
+
+<h1>Get the perfect <span class="orange-text">Developers & Projects</span></h1>
+<p>With the world's No1 Developers marketplace</p>
+ <div>
+  <form action="/login/signup">
+<button class="btn btn-primary sub-btn" type="submit" >Join Now</button>
+   </form>
+  </div>
+</div>
+</div>
+<div class="col-md-4 col-lg-5">
+<div class="banner-img">
+<img src="{% static 'assets/img/banner.png' %}" class="img-fluid" alt="banner">
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<section class="section feature">
+<div class="container">
+<div class="row">
+
+<div class="col-md-4">
+<div class="feature-item freelance-count">
+<div class="feature-icon">
+<img src="{% static 'assets/img/icon/icon1.png' %}" class="img-fluid" alt="">
+</div>
+<div class="feature-content">
+<h3>2000</h3>
+<p>freelance Developers</p>
+</div>
+</div>
+</div>
+
+
+
+<div class="col-md-4">
+<div class="feature-item">
+<div class="feature-icon">
+<img src="{% static 'assets/img/icon/icon-2.png' %}" class="img-fluid" alt="">
+</div>
+<div class="feature-content">
+<h3>25 - 100+</h3>
+<p>Developers per project</p>
+</div>
+</div>
+</div>
+
+
+<div class="col-md-4">
+<div class="feature-item comp-project">
+<div class="feature-icon">
+<img src="{% static 'assets/img/icon/icon3.png' %}" class="img-fluid" alt="">
+</div>
+<div class="feature-content">
+<h3>388,615</h3>
+<p>completed projects</p>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+
+<section class="section work">
+<div class="container">
+<div class="row">
+
+<div class="col-md-6 work-box bg1">
+<div class="work-content">
+<h2>I need a Developed <span>Project</span></h2>
+<p>Get the perfect Developed project for your budget from our creative community.</p>
+<a href="/login/signup"><i class="fas fa-long-arrow-alt-right long-arrow"></i></a>
+</div>
+</div>
+
+<div class="col-md-6 work-box bg2">
+<div class="work-content">
+<h2>I want to <span>work</span></h2>
+<p>Do you want to earn money, find unlimited clients and build your freelance career?</p>
+<a href="/login/signup"><i class="fas fa-long-arrow-alt-right long-arrow"></i></a>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+<section class="section projects">
+<div class="container">
+<div class="row">
+<div class="col-12 col-md-12 mx-auto">
+<div class="section-header text-center">
+<div class="section-line"></div>
+<h2 class="header-title">Get Inspired<br> By Development Projects</h2>
+<p>High Performing Solutions To Your</p>
+</div>
+</div>
+</div>
+<div class="row">
+
+<div class="col-lg-3 col-md-6 col-sm-6">
+<div class="project-item">
+<div class="project-img">
+<a href="/login/signup"><img src="{% static 'assets/img/project/project-01.jpg' %}" alt="" class="img-fluid"></a>
+</div>
+<div class="d-flex justify-content-between align-items-center">
+<div class="project-content">
+<h5>Graphics & Design</h5>
+</div>
+<div class="pro-icon">
+<div class="project-icon">
+</div>
+</div>
+<div class="project-content">
+<h4>211</h4>
+<h5>Developers</h5>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="col-lg-3 col-md-6 col-sm-6">
+<div class="project-item">
+<div class="project-img">
+<a href="/login/signup"><img src="{% static 'assets/img/project/project-02.jpg' %}" alt="" class="img-fluid"></a>
+</div>
+<div class="d-flex justify-content-between align-items-center">
+<div class="project-content">
+<h5>Digital Marketing</h5>
+</div>
+<div class="pro-icon">
+<div class="project-icon">
+</div>
+</div>
+<div class="project-content">
+<h4>303</h4>
+<h5>Developers</h5>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="col-lg-3 col-md-6 col-sm-6">
+<div class="project-item">
+<div class="project-img">
+<a href="/login/signup"><img src="{% static 'assets/img/project/project-03.jpg' %}" alt="" class="img-fluid"></a>
+</div>
+<div class="d-flex justify-content-between align-items-center">
+<div class="project-content">
+<h5>Writing & Translation</h5>
+</div>
+<div class="pro-icon">
+<div class="project-icon">
+</div>
+</div>
+<div class="project-content">
+<h4>58</h4>
+<h5>Developers</h5>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="col-lg-3 col-md-6 col-sm-6">
+<div class="project-item">
+<div class="project-img">
+<a href="/login/signup"><img src="{% static 'assets/img/project/project-04.jpg' %}" alt="" class="img-fluid"></a>
+</div>
+<div class="d-flex justify-content-between align-items-center">
+<div class="project-content">
+<h5>Video & Animation</h5>
+</div>
+<div class="pro-icon">
+<div class="project-icon">
+</div>
+</div>
+<div class="project-content">
+<h4>203</h4>
+<h5>Developers</h5>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="col-lg-3 col-md-6 col-sm-6">
+<div class="project-item">
+<div class="project-img">
+<a href="/login/signup"><img src="{% static 'assets/img/project/project-01.jpg' %}" alt="" class="img-fluid"></a>
+</div>
+<div class="d-flex justify-content-between align-items-center">
+<div class="project-content">
+<h5>Music & Audio</h5>
+</div>
+<div class="pro-icon">
+<div class="project-icon">
+</div>
+</div>
+<div class="project-content">
+<h4>145</h4>
+<h5>Developers</h5>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="col-lg-3 col-md-6 col-sm-6">
+<div class="project-item">
+<div class="project-img">
+<a href="/login/signup"><img src="{% static 'assets/img/project/project-04.jpg' %}" alt="" class="img-fluid"></a>
+</div>
+<div class="d-flex justify-content-between align-items-center">
+<div class="project-content">
+<h5>Programming & Tech</h5>
+</div>
+<div class="pro-icon">
+<div class="project-icon">
+</div>
+</div>
+<div class="project-content">
+<h4>101</h4>
+<h5>Developers</h5>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="col-lg-3 col-md-6 col-sm-6">
+<div class="project-item">
+<div class="project-img">
+<a href="/login/signup"><img src="{% static 'assets/img/project/project-03.jpg' %}" alt="" class="img-fluid"></a>
+</div>
+<div class="d-flex justify-content-between align-items-center">
+<div class="project-content">
+<h5>Data</h5>
+</div>
+<div class="pro-icon">
+<div class="project-icon">
+</div>
+</div>
+<div class="project-content">
+<h4>68</h4>
+<h5>Developers</h5>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="col-lg-3 col-md-6 col-sm-6">
+<div class="project-item">
+<div class="project-img">
+<a href="/login/signup"><img src="{% static 'assets/img/project/project-01.jpg' %}" alt="" class="img-fluid"></a>
+</div>
+<div class="d-flex justify-content-between align-items-center">
+<div class="project-content">
+<h5>Buisness</h5>
+</div>
+<div class="pro-icon">
+<div class="project-icon">
+</div>
+</div>
+<div class="project-content">
+<h4>30</h4>
+<h5>Developers</h5>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="row">
+<div class="col-md-12 text-center">
+<div class="see-all">
+<a href="/login/signup" class=" all-btn">SEE ALL PROJECT</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+<section class="section subscribe">
+<div class="container">
+<div class="row align-items-center">
+<div class="col-md-4">
+<img src="{% static 'assets/img/subscribe.png' %}" class="img-fluid" alt="subscribe">
+</div>
+<div class="col-md-6">
+<h3>Subscribe To Get Discounts, Updates & More</h3>
+<p>Monthly product updates, industry news and more!</p>
+<form action="#" method="POST">
+<div class="form-inner">
+<div class="input-group">
+<input type="email" class="form-control" placeholder="Enter Email Address">
+<button class="btn btn-primary sub-btn" type="submit">Submit</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</section>
+
+
+
+<section class="testimonial-area padding-top-100px padding-bottom-100px text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-heading">
+                    <h2 class="sec__title">Kind Words From Our <br> Developers</h2>
+                </div><!-- end section-heading -->
+            </div><!-- end col-lg-12 -->
+        </div><!-- end row -->
+        <div class="row mt-5">
+            <div class="col-lg-12">
+                <div class="testimonial-carousel carousel-item-wrap">
+                    <div class="testimonial-item">
+                        <div class="testi-content mb-3">
+                            <img src="{% static 'images/small-team2.jpg' %}" class="testi__img" alt="testimonial image">
+                            <h4 class="tesi__title mt-4">Richards</h4>
+                            <span class="testi__meta">Co-Founder</span>
+                        </div>
+                        <div class="testi-comment">
+                            <p class="testi__desc">
+                                It's Extremely exciting that BidLance has freelancers from all over the world.
+                                One of the best things about BidLance is that while we're sleeping,someone's working
+                            </p>
+                        </div>
+                    </div><!-- end testimonial-item -->
+                    <div class="testimonial-item">
+                        <div class="testi-content mb-3">
+                            <img src="{% static 'assets/img/admin.jpg' %}" class="testi__img" alt="testimonial image">
+                            <h4 class="tesi__title mt-4">Mubashir</h4>
+                            <span class="testi__meta">Founder</span>
+                        </div>
+                        <div class="testi-comment">
+                            <p class="testi__desc">
+                               When you want to create a buisness
+                                bigger, you need a lot of help, That's what BidLance does
+                                BidLance connect the freelancers with employers
+                            </p>
+                        </div>
+                    </div><!-- end testimonial-item -->
+                    <div class="testimonial-item">
+                        <div class="testi-content mb-3">
+                            <img src="{% static 'images/small-team3.jpg' %}" class="testi__img" alt="testimonial image">
+                            <h4 class="tesi__title mt-4">Alex Jhon</h4>
+                            <span class="testi__meta">Co-Founder</span>
+                        </div>
+                        <div class="testi-comment">
+                            <p class="testi__desc">
+                                It's Extremely exciting that BidLance has freelancers from all over the world.
+                                One of the best things about BidLance is that while we're sleeping,someone's working
+                            </p>
+                        </div>
+                    </div><!-- end testimonial-item -->
+                    <div class="testimonial-item">
+                        <div class="testi-content mb-3">
+                            <img src="{% static 'images/small-team1.jpg' %}" class="testi__img" alt="testimonial image">
+                            <h4 class="tesi__title mt-4">Richard Doe</h4>
+                            <span class="testi__meta">Co-Founder</span>
+                        </div>
+                        <div class="testi-comment">
+                            <p class="testi__desc">
+                                It's Extremely exciting that BidLance has freelancers from all over the world.
+                                One of the best things about BidLance is that while we're sleeping,someone's working
+                            </p>
+                        </div>
+                    </div><!-- end testimonial-item -->
+                </div><!-- end testimonial-carousel -->
+            </div><!-- end col-lg-12 -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- end testimonial-area -->
+
+
+{% endblock content %}
+
+<section class="footer-area padding-top-90px padding-bottom-30px">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 responsive-column">
+                <div class="footer-item">
+                    <div class="logo">
+                        <a href="index.html" class="foot-logo"><img src="{% static 'assets/img/mylogo.png' %}" alt="logo"></a>
+                        <p class="footer__desc line-height-30 mt-3">
+                            Kanjirapuza, Pincode-678591, India. <br>
+                            +91 62828-68833 <br>
+                            bidlanceoffical22@gmail.com
+                        </p>
+                        <h4 class="footer__title mt-4">Connect with us</h4>
+                        <ul class="social-profile">
+                            <li>
+                                <a href="#">
+                                    <i class="la la-facebook"></i>
+                                </a>
+                            </li>
+                            <li>
+                               <a href="">
+                                    <i class="la la-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="la la-instagram"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div><!-- end logo -->
+                </div><!-- end footer-item -->
+            </div><!-- end col-lg-4 -->
+            <div class="col-lg-2 responsive-column">
+                <div class="footer-item">
+                    <h4 class="footer__title">General</h4>
+                    <ul class="list-items">
+                        <li><a href="about.html">About / Press</a></li>
+                        <li><a href="">Blog</a></li>
+
+                    </ul>
+                </div><!-- end footer-item -->
+            </div><!-- end col-lg-2 -->
+            <div class="col-lg-2 responsive-column">
+                <div class="footer-item">
+                    <h4 class="footer__title">Join Us</h4>
+                    <ul class="list-items">
+                        <li><a href="/sign-up"> SignUp</a></li>
+                        <li><a href="/login">Login</a></li>
+
+                    </ul>
+                </div><!-- end footer-item -->
+            </div><!-- end col-lg-2 -->
+            <div class="col-lg-2 responsive-column">
+                <div class="footer-item">
+                    <h4 class="footer__title">Helpful Links</h4>
+                    <ul class="list-items">
+                        <li><a href="">How It Works</a></li>
+                        <li><a href="">Terms of Use</a></li>
+                    </ul>
+                </div><!-- end footer-item -->
+            </div><!-- end col-lg-2 -->
+        </div><!-- end row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="copy-right margin-top-50px padding-top-30px">
+                    <p class="copy__desc">
+                        Copyright &copy;2022 BidLance Inc. Made with
+                        <span class="la la-heart-o"></span> by <a href="/">Mubashir</a>
+                    </p>
+                </div><!-- end copy-right -->
+            </div><!-- end col-lg-12 -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- end footer-area -->
+</div>
+
+<!-- start back-to-top -->
+<div id="back-to-top">
+    <i class="la la-angle-up" title="Go top"></i>
+</div>
+<!-- end back-to-top -->
+
+<script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>
+
+<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+
+<script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+
+<script src="{% static 'assets/plugins/select2/js/select2.min.js' %}"></script>
+
+<script src="{% static 'assets/js/slick.js' %}"></script>
+
+<script src="{% static 'assets/js/script.js' %}"></script>
+
+
+<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'js/jquery-ui.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'js/isotope-3.0.6.min.js' %}"></script>
+<script src="{% static 'js/chosen.min.js' %}"></script>
+<script src="{% static 'js/moment.min.js' %}"></script>
+<script src="{% static 'js/daterangepicker.js' %}"></script>
+<script src="{% static 'js/purecounter.js' %}"></script>
+<script src="{% static 'js/progresscircle.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

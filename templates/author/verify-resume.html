@@ -1,0 +1,63 @@
+{% extends 'author/index.html' %}
+{% block content %}
+{% load static %}
+
+<div class="page-wrapper">
+<div class="content container-fluid">
+
+<div class="page-header">
+<div class="row align-items-center">
+<div class="col">
+<h3 class="page-title">Freelancers</h3>
+</div>
+</div>
+</div>
+
+
+<div class="row">
+<div class="col-sm-12">
+<div class="card">
+<div class="card-body">
+<div class="table-responsive">
+<table class="table table-center table-hover mb-0 datatable">
+<thead>
+<tr>
+<th>User</th>
+<th>Username</th>
+<th>Email</th>
+<th>Designation</th>
+<th>Date submited</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+{% for i in presume %}
+<tr>
+<td>
+    <h2 class="table-avatar">
+<a href="profile.html"><img class="me-2 rounded-circle" src="{{ i.userimg.url }}" alt="User Image">
+</a>
+</h2>
+</td>
+<td>{{i.user}}</td>
+<td>{{i.email}}</td>
+<td>{{i.designation}}</td>
+<td>{{i.date_added}}</td>
+<td>
+<a href="{% url 'bidlanceadmin/approve-resume' i.slug %}" class="btn btn-success btn-disable" style="color:white;background-color:#299e5d;">Approve</a>
+<a href="{% url 'bidlanceadmin/reject-resume' i.slug %}" class="btn btn-disable">Reject</a>
+</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+{% endblock content %}

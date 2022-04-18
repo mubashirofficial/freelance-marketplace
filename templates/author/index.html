@@ -1,0 +1,279 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+<title>BidLance</title>
+
+<link rel="shortcut icon" href="{% static 'admin/assets/img/favicon1.png' %}">
+
+<link rel="stylesheet" href="{% static 'admin/assets/css/bootstrap.min.css' %}">
+
+<link rel="stylesheet" href="{% static 'admin/assets/plugins/fontawesome/css/fontawesome.min.css' %}">
+<link rel="stylesheet" href="{% static 'admin/assets/plugins/fontawesome/css/all.min.css' %}">
+
+<link rel="stylesheet" href="{% static 'admin/assets/css/feather.css' %}">
+
+<link rel="stylesheet" href="{% static 'admin/assets/plugins/select2/css/select2.min.css' %}">
+
+<link rel="stylesheet" href="{% static 'admin/assets/css/bootstrap-datetimepicker.min.css' %}">
+
+<link rel="stylesheet" href="{% static 'admin/assets/plugins/datatables/datatables.min.css' %}">
+
+<link rel="stylesheet" href="{% static 'admin/assets/css/style4.css' %}">
+
+
+ <style>
+.alert {
+  padding: 12px;
+  background-color: #66ba73;
+  color: white;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="main-wrapper">
+
+<div class="header">
+
+<div class="header-left">
+<a href="" class="logo">
+<img src="{% static 'admin/assets/img/mylogo.png' %}" alt="Logo">
+</a>
+<a href="" class="logo logo-small">
+<img src="{% static 'admin/assets/img/favicon1.png' %}" alt="Logo" width="30" height="30">
+</a>
+
+<a href="javascript:void(0);" id="toggle_btn">
+<i class="feather-chevrons-left"></i>
+</a>
+
+
+<a class="mobile_btn" id="mobile_btn">
+<i class="feather-chevrons-left"></i>
+</a>
+
+</div>
+
+
+<div class="top-nav-search">
+<form>
+<input type="text" class="form-control" placeholder="Start typing your Search...">
+<button class="btn" type="submit"><i class="feather-search"></i></button>
+</form>
+</div>
+
+
+<ul class="nav user-menu">
+
+<li class="nav-item dropdown">
+<a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+<i class="feather-bell"></i> <span class="badge badge-pill"></span>
+</a>
+<div class="dropdown-menu notifications">
+<div class="topnav-dropdown-header">
+<span class="notification-title">Notifications</span>
+<a href="/bidlanceadmin/clear-notification" class="clear-noti"> Clear All</a>
+</div>
+<div class="noti-content">
+<ul class="notification-list">
+<li class="notification-message">
+ {% for i in notification %}
+<a href="">
+<div class="media d-flex">
+<div class="media-body flex-grow-1">
+<p class="noti-details"><span class="noti-title">{{i.notification}}</span></p>
+<p class="noti-time"><span class="notification-time">{{i.opuser}}</span></p>
+</div>
+</div>
+</a>
+ {% endfor %}
+</li>
+</ul>
+</div>
+<div class="topnav-dropdown-footer">
+</div>
+</div>
+</li>
+
+{% if request.user.is_authenticated %}
+<li class="nav-item dropdown has-arrow main-drop">
+<a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+<span class="user-img">
+<img src="{{ user.userimage.image.url }}" alt="">
+<span class="status online"></span>
+</span>
+</a>
+<div class="dropdown-menu">
+<a class="dropdown-item" href="/bidlanceadmin/settings"><i data-feather="settings" class="me-1"></i> Settings</a>
+<a class="dropdown-item" href="/logout"><i data-feather="log-out" class="me-1"></i> Logout</a>
+</div>
+</li>
+
+</ul>
+
+</div>
+{% endif %}
+
+<div class="sidebar" id="sidebar">
+<div class="sidebar-inner slimscroll">
+<div id="sidebar-menu" class="sidebar-menu">
+<ul>
+<li class="menu-title"><span>Main</span></li>
+<li >
+<a href="/bidlanceadmin/index"><i data-feather="home"></i> <span>Dashboard</span></a>
+</li>
+<li>
+<a href="/bidlanceadmin/categories"><i data-feather="copy"></i> <span>Categories</span></a>
+</li>
+<li>
+<a href="/bidlanceadmin/projects"><i data-feather="database"></i> <span>Projects</span></a>
+</li>
+<li>
+<a href="/bidlanceadmin/users"><i data-feather="users"></i> <span>Users</span></a>
+</li>
+<li>
+<a href="/bidlanceadmin/freelancers"><i data-feather="user-check"></i> <span>Freelancers</span></a>
+</li>
+<li>
+<a href="/bidlanceadmin/verifyresume"><i data-feather="users"></i><span>Verify Resume</span></a>
+</li>
+ <li>
+<a href="/bidlanceadmin/addblog"><i data-feather="copy"></i> <span>Add Blog</span></a>
+</li>
+<li>
+<a href="/bidlanceadmin/settings"><i data-feather="settings"></i> <span>Settings</span></a>
+</li>
+ <li>
+<a href="/bidlanceadmin/addadmin"><i data-feather="users"></i> <span>Add Admin</span></a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+{% block content %}
+<div class="page-wrapper">
+<div class="content container-fluid">
+
+<div class="page-header">
+<div class="row align-items-center">
+<div class="col">
+<h3 class="page-title">Dashboard</h3>
+<ul class="breadcrumb">
+<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+
+<div class="row">
+<div class="col-md-3 d-flex">
+<div class="card wizard-card flex-fill">
+<div class="card-body">
+<p class="text-primary mt-0 mb-2">Users</p>
+<h5>{{ucount}}</h5>
+<p><a href="/bidlanceadmin/users">view details</a></p>
+<span class="dash-widget-icon bg-1">
+<i class="fas fa-users"></i>
+</span>
+</div>
+</div>
+</div>
+ <div class="col-md-3 d-flex">
+<div class="card wizard-card flex-fill">
+<div class="card-body">
+<p class="text-primary mt-0 mb-2">Freelancers</p>
+<h5>{{arcount}}</h5>
+<p><a href="users.html">view details</a></p>
+<span class="dash-widget-icon bg-1">
+<i class="fas fa-users"></i>
+</span>
+</div>
+</div>
+</div>
+<div class="col-md-3 d-flex">
+<div class="card wizard-card flex-fill">
+<div class="card-body">
+<p class="text-primary mt-0 mb-2">Completed Projects</p>
+<h5>{{account}}</h5>
+<p><a href="projects.html">view details</a></p>
+<span class="dash-widget-icon bg-1">
+<i class="fas fa-th-large"></i>
+</span>
+</div>
+</div>
+</div>
+<div class="col-md-3 d-flex">
+<div class="card wizard-card flex-fill">
+<div class="card-body">
+<p class="text-primary mt-0 mb-2">Active Projects</p>
+<h5>{{acount}}</h5>
+<p><a href="/bidlanceadmin/projects">view details</a></p>
+<span class="dash-widget-icon bg-1">
+<i class="fas fa-bezier-curve"></i>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-lg-12 d-flex">
+<div class="card w-100">
+<div class="card-body pt-0 pb-2">
+<div class="card-header">
+<h5 class="card-title">Over view</h5>
+</div>
+<div id="chart"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+ {% endblock content %}
+</div>
+
+</div>
+</div>
+
+<script src="{% static 'admin/assets/js/jquery-3.6.0.min.js' %}"></script>
+
+<script src="{% static 'admin/assets/js/bootstrap.bundle.min.js' %}"></script>
+
+<script src="{% static 'admin/assets/js/feather.min.js' %}"></script>
+
+<script src="{% static 'admin/assets/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+
+<script src="{% static 'admin/assets/plugins/select2/js/select2.min.js' %}"></script>
+
+<script src="{% static 'admin/assets/plugins/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'admin/assets/plugins/datatables/datatables.min.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+<script src="{% static 'admin/assets/js/script.js' %}"></script>
+</body>
+</html>

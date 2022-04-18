@@ -1,0 +1,212 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+{% load static %}
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:100,300,400,500,700,&amp;display=swap" rel="stylesheet">
+<div class="dashboard-content-wrap">
+        <div class="container-fluid">
+
+<div class="col-md-12">
+<div class="page-title">
+<div class="row">
+<div class="col-md-6">
+<h3>Settings</h3>
+</div>
+</div>
+</div>
+                        {% for message in messages %}
+                                <br><div class="row">
+                                    <div class="col-lg-0.5"></div>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="alert col-lg-11">
+                                 <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                                 <strong></strong>{{ message }}
+                                 </div>
+                                <div class="col-lg-0.5"></div>
+                            </div>
+                        {% endfor %}
+<nav class="user-tabs project-tabs">
+<ul role="tablist" class="nav nav-tabs nav-tabs-bottom nav-justified">
+<li class="nav-item">
+<a data-bs-toggle="tab" class="nav-link active" href="#update-profile">Update Profile</a>
+</li>
+<li class="nav-item">
+<a data-bs-toggle="tab" class="nav-link" href="#change-password">Change Password </a>
+</li>
+<li class="nav-item">
+<a data-bs-toggle="tab" class="nav-link" href="#delete-account">Delete Account</a>
+</li>
+</ul>
+</nav>
+    <div class="tab-content pt-0">
+        {% if request.user.is_authenticated %}
+<div role="tabpanel" id="update-profile" class="tab-pane fade active show">
+<div class="col-lg-16">
+<div class="pro-pos">
+<div class="setting-content">
+<div class="card">
+<div class="pro-head">
+<h3 class="pro-title without-border mb-0">Profile Basics </h3>
+</div><br>
+<form action="/update-profile" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+<div class="pro-body p-0">
+<div class="form-row pro-pad pt-0">
+<div class="form-group col-md-6">
+<div class="user-profile-action mb-4 d-flex align-items-center">
+                           <div>
+                                <img src="{{user.userimage.image.url}}" id="blah" class="radius-round border" style="max-width:200px;max-height:180px;">
+                            </div>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <div class="user-upload-img-wrap">
+                                <div class="file-upload-wrap file-upload-wrap-2">
+                                    <input type="file" name="newpic" class="multi file-upload-input with-preview" multiple maxlength="1" onchange="readURL(this);">
+                                    <span class="file-upload-text" style="color:#3CB371;"><i class="la la-photo mr-2"></i>Change Photo</span>
+                                </div>
+                            </div>
+                        </div>
+</div>
+</div>
+    <script>
+        function readURL(input) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+            $('#blah').attr('src', e.target.result).width(150).height(200);
+            };
+
+         reader.readAsDataURL(input.files[0]);
+         }
+        }
+    </script>
+
+<div class="form-row pro-pad">
+<div class="form-group col-md-6">
+<label>Username</label>
+<input type="text" name="newusername" class="form-control" value="{{user.username}}">
+</div>
+<div class="form-group col-md-6">
+<label>Email Address</label>
+<input type="email" name="newemail" class="form-control" value="{{user.email}}">
+</div>
+<div class="form-group col-md-6">
+<label>First Name</label>
+<input type="text" name="newfirst" class="form-control" value="{{user.first_name}}">
+</div>
+<div class="form-group col-md-6">
+<label>Last Name</label>
+<input type="text" name="newlast" class="form-control" value="{{user.last_name}}">
+</div>
+</div>
+</div>
+<div style="padding-left:20px;">
+<button class="btn btn-primary click-btn btn-plan" type="submit" style="background-color:#4CAF50;border:none;">Update</button>
+</div>
+    <br>
+</form>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+<div role="tabpanel" id="change-password" class="tab-pane fade">
+<div class="account-content setting-content">
+<div class="card">
+<div class="pro-head">
+<h3 class="pro-title without-border mb-0">Change Password</h3>
+</div>
+<div class="pro-body">
+<div class="row">
+<div class="col-md-12">
+<form action="/change-pass" method="post">
+    {% csrf_token %}
+<div class="form-group">
+<label>Old Password</label>
+<input type="password" name="oldpass"  class="form-control" required>
+</div>
+<div class="form-group">
+<label>New Password</label>
+<input type="password" name="newpassword" class="form-control" required>
+</div>
+<div class="form-group">
+<label>Confirm Password</label>
+<input type="password" name="confpass" class="form-control"  required>
+</div>
+<div class="row">
+<div class="col-md-12">
+<button class="btn btn-primary click-btn btn-plan" type="submit" style="background-color:#4CAF50;border:none;">Change Password</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div role="tabpanel" id="delete-account" class="tab-pane fade">
+<div class="setting-content">
+<div class="card">
+<div class="pro-head">
+<h3 class="pro-title without-border mb-0">Delete Account</h3>
+</div>
+<div class="pro-body">
+<form action="/delete-account" method="post">
+    {% csrf_token %}
+<div class="form-group">
+<label>Please Explain Further</label>
+<textarea class="form-control" name="Explanation" rows="5"></textarea>
+</div>
+<div class="form-group">
+<label>Password</label>
+<input type="password" name="pass" class="form-control">
+</div>
+<div class="row">
+<div class="col-md-12">
+<button class="btn btn-primary click-btn btn-plan" type="submit" style="background-color:#4CAF50;border:none;">Delete Account</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+
+
+</div>
+        {% endif %}
+    </div>
+
+
+
+<script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>
+
+<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+
+<script src="{% static 'assets/plugins/select2/js/select2.min.js' %}"></script>
+
+<script src="{% static 'assets/js/slick.js' %}"></script>
+
+<script src="{% static 'assets/plugins/theia-sticky-sidebar/ResizeSensor.js' %}"></script>
+<script src="{% static 'assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js' %}"></script>
+
+<script src="{% static 'assets/js/script.js' %}"></script>
+
+<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'js/jquery-ui.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'js/isotope-3.0.6.min.js' %}"></script>
+<script src="{% static 'js/chosen.min.js' %}"></script>
+<script src="{% static 'js/chart.js' %}"></script>
+<script src="{% static 'js/line-chart.js' %}"></script>
+<script src="{% static 'js/doughutchart.js' %}"></script>
+<script src="{% static 'js/moment.min.js' %}"></script>
+<script src="{% static 'js/daterangepicker.js' %}"></script>
+<script src="{% static 'js/purecounter.js' %}"></script>
+<script src="{% static 'js/progresscircle.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock content %}

@@ -1,0 +1,329 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/rstyle.css' %}">
+    <div class="dashboard-content-wrap">
+        <div class="container-fluid">
+
+<div class="col-md-12">
+<div class="page-title">
+<div class="row">
+<div class="col-md-6">
+<h3>Manage Projects</h3>
+</div>
+</div>
+</div>
+    {% for message in messages %}
+                                <br><div class="row">
+                                    <div class="col-lg-0.5"></div>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="alert col-lg-11">
+                                 <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                                 <strong></strong>{{ message }}
+                                 </div>
+                                <div class="col-lg-0.5"></div>
+                            </div>
+                        {% endfor %}
+<nav class="user-tabs project-tabs">
+<ul role="tablist" class="nav nav-tabs nav-tabs-bottom nav-justified">
+<li class="nav-item">
+<a data-bs-toggle="tab" class="nav-link active" href="#jobs-posted">Listed Projects</a>
+</li>
+<li class="nav-item">
+<a data-bs-toggle="tab" class="nav-link" href="#pending-approval">Job Approval Pending</a>
+</li>
+<li class="nav-item">
+<a data-bs-toggle="tab" class="nav-link" href="#ongoing-projects">Ongoing Projects</a>
+</li>
+<li class="nav-item">
+<a data-bs-toggle="tab" class="nav-link" href="#completed-projects">Completed Projects</a>
+</li>
+</ul>
+</nav>
+    <div class="tab-content pt-0">
+        {% if request.user.is_authenticated %}
+<div role="tabpanel" id="jobs-posted" class="tab-pane fade active show">
+    {% for i in approved %}
+<div class="my-projects-list">
+<div class="row">
+<div class="col-lg-12 flex-wrap">
+<div class="projects-card flex-fill">
+<div class="card-body">
+<div class="projects-details align-items-center">
+<div class="project-info">
+<span>{{i.user}}</span>
+<h2>{{i.title}}</h2>
+<div class="customer-info">
+<ul class="list-details">
+<li>
+<div class="slot">
+<p>Start On</p>
+<h5>{{i.jobstart}}</h5>
+</div>
+</li>
+<li>
+<div class="slot">
+<p>posted on</p>
+<h5>{{i.date_added}}</h5>
+</div>
+</li>
+<li>
+<div class="slot">
+<p>Category</p>
+<h5>{{i.category}}</h5>
+</div>
+</li>
+</ul>
+</div>
+ </div>
+<div class="project-hire-info">
+<div class="content-divider"></div>
+<div class="projects-amount">
+    <h5>Rate</h5>
+<h3>{{i.currency}}{{i.minrate}}-{{i.maxrate}}</h3>
+</div>
+<div class="content-divider"></div>
+<div class="projects-action text-center">
+<a href="{% url 'project-details' i.slug %}" class="projects-btn">View Details </a>
+    <a href="{% url 'project-delete' i.slug %}" class="projects-btn">Delete</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endfor %}
+</div>
+
+<div role="tabpanel" id="pending-approval" class="tab-pane fade">
+
+<div class="row">
+<div class="col-12">
+<div class="warning-card">
+<p><i class="fas fa-exclamation-triangle"></i> Pending for admin Approval.</p>
+</div>
+</div>
+</div>
+{% for pending in project %}
+<div class="my-projects-list">
+<div class="row">
+<div class="col-lg-12 flex-wrap">
+<div class="projects-card flex-fill">
+<div class="card-body">
+<div class="projects-details align-items-center">
+<div class="project-info">
+<span>{{pending.user}}</span>
+<h2>{{pending.title}}</h2>
+<div class="customer-info">
+<ul class="list-details">
+<li>
+<div class="slot">
+<p>Start on</p>
+<h5>{{pending.jobstart}}</h5>
+</div>
+</li>
+<li>
+<div class="slot">
+<p>posted on</p>
+<h5>{{pending.date_added}}</h5>
+</div>
+</li>
+<li>
+<div class="slot">
+<p>Category</p>
+<h5>{{pending.category}}</h5>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="project-hire-info">
+ <div class="content-divider"></div>
+<div class="projects-amount">
+    <h5>Rate</h5>
+<h3>{{pending.currency}}{{pending.minrate}}-{{pending.maxrate}}</h3>
+
+</div>
+<div class="content-divider"></div>
+<div class="projects-action text-center">
+<a  href="{% url 'edit-project' pk=pending.pk %}" class="projects-btn">Edit Project</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endfor %}
+
+</div>
+
+<div role="tabpanel" id="ongoing-projects" class="tab-pane fade">
+    {% for i in ongoing %}
+<div class="my-projects-list">
+<div class="row">
+<div class="col-lg-10 flex-wrap">
+<div class="projects-card flex-fill">
+<div class="card-body">
+<div class="projects-details align-items-center">
+<div class="project-info">
+<span>{{i.user}}</span>
+<h2>{{i.title}}</h2>
+<div class="customer-info">
+<ul class="list-details">
+<li>
+<div class="slot">
+<p>Started On</p>
+<h5>{{i.hiredon}}</h5>
+</div>
+</li>
+<li>
+<div class="slot">
+<p>posted on</p>
+<h5>{{i.posted}}</h5>
+</div>
+</li>
+<li>
+<div class="slot">
+<p>Category</p>
+<h5>{{i.category}}</h5>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="project-hire-info">
+<div class="content-divider"></div>
+<div class="projects-amount">
+    <h5>Rate</h5>
+<h3>{{i.currency}}{{i.rate}}.00</h3>
+</div>
+ <div class="content-divider"></div>
+<div class="projects-action text-center">
+    <a href="{% url 'project-completed' pk=i.pk %}" class="projects-btn">Project Completed</a>
+    <div class="">Ongoing</div>
+    <p>Hired on {{i.hiredon}}</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-lg-2 d-flex flex-wrap">
+<div class="projects-card flex-fill">
+<div class="card-body p-2">
+<div class="prj-proposal-count text-center hired">
+<h3>Hired</h3>
+<img src="{{i.himage.url}}" alt="" class="img-fluid">
+<p class="mb-0">{{i.hfname}} {{i.hlname}}</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endfor %}
+</div>
+
+<div role="tabpanel" id="completed-projects" class="tab-pane fade">
+    {% for i in completed %}
+<div class="my-projects-list">
+<div class="row">
+<div class="col-lg-10 flex-wrap">
+<div class="projects-card flex-fill">
+<div class="card-body">
+<div class="projects-details align-items-center">
+<div class="project-info">
+<span>{{i.user}}</span>
+<h2>{{i.title}}</h2>
+<div class="customer-info">
+<ul class="list-details">
+<li>
+<div class="slot">
+<p>Hired on</p>
+<h5>{{i.hiredon}}</h5>
+</div>
+</li>
+<li>
+<div class="slot">
+<p>Category</p>
+<h5>{{i.category}}</h5>
+</div>
+</li>
+<li>
+<div class="slot">
+<p>Campleted On</p>
+<h5>{{i.completed}}</h5>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="project-hire-info">
+<div class="content-divider"></div>
+<div class="projects-amount">
+    <h5>Rate</h5>
+<h3>{{i.currency}}{{i.rate}}.00</h3>
+
+</div>
+<div class="content-divider"></div>
+<div class="projects-action text-center">
+<h4 class="completed-badge"><span><i class="fas fa-medal me-2"></i></span>Completed</h4>
+<a href="{% url 'write-review' pk=i.pk %}" class="rating-btn">Write Review</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-lg-2 d-flex flex-wrap">
+<div class="projects-card flex-fill">
+<div class="card-body p-2">
+<div class="prj-proposal-count text-center hired">
+<h3>Hired</h3>
+<img src="{{i.himage.url}}" alt="" class="img-fluid">
+<p class="mb-0">{{i.hfname}} {{i.hlname}}</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endfor %}
+</div>
+        {% endif %}
+</div>
+
+</div>
+<script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>
+
+<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+
+<script src="{% static 'assets/plugins/select2/js/select2.min.js' %}"></script>
+
+<script src="{% static 'assets/js/slick.js' %}"></script>
+
+<script src="{% static 'assets/plugins/theia-sticky-sidebar/ResizeSensor.js' %}"></script>
+<script src="{% static 'assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js' %}"></script>
+
+<script src="{% static 'assets/js/script.js' %}"></script>
+
+<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'js/jquery-ui.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'js/isotope-3.0.6.min.js' %}"></script>
+<script src="{% static 'js/chosen.min.js' %}"></script>
+<script src="{% static 'js/chart.js' %}"></script>
+<script src="{% static 'js/line-chart.js' %}"></script>
+<script src="{% static 'js/doughutchart.js' %}"></script>
+<script src="{% static 'js/moment.min.js' %}"></script>
+<script src="{% static 'js/daterangepicker.js' %}"></script>
+<script src="{% static 'js/purecounter.js' %}"></script>
+<script src="{% static 'js/progresscircle.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock content %}

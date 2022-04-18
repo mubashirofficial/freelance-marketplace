@@ -1,0 +1,168 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+{% load static %}
+<div class="dashboard-content-wrap">
+        <div class="container-fluid">
+<div class="col-md-12">
+<div class="page-title">
+<div class="row">
+<div class="col-md-6">
+<h3>My Projects</h3>
+</div>
+</div>
+</div>
+<nav class="user-tabs project-tabs">
+<ul role="tablist" class="nav nav-tabs nav-tabs-bottom nav-justified">
+<li class="nav-item">
+<a data-bs-toggle="tab" class="nav-link active" href="#bidswon">Bids Won</a>
+</li>
+<li class="nav-item">
+<a data-bs-toggle="tab" class="nav-link" href="#completedprojects">Completed Projects</a>
+</li>
+</ul>
+</nav>
+    <div class="tab-content pt-0">
+<div role="tabpanel" id="bidswon" class="tab-pane fade active show">
+    {% for i in ongoing %}
+<div class="my-projects-list">
+<div class="row">
+<div class="col-lg-12 flex-wrap">
+<div class="projects-card flex-fill">
+<div class="card-body">
+<div class="projects-details align-items-center">
+<div class="project-info">
+<span>{{i.user}}</span>
+<h2>{{i.title}}</h2>
+<div class="customer-info">
+<ul class="list-details">
+<li>
+<div class="slot">
+<p>Started On</p>
+<h5>{{i.hiredon}}</h5>
+</div>
+</li>
+<li>
+<div class="slot">
+<p>posted on</p>
+<h5>{{i.posted}}</h5>
+</div>
+</li>
+<li>
+<div class="slot">
+<p>Category</p>
+<h5>{{i.category}}</h5>
+</div>
+</li>
+</ul>
+</div>
+ </div>
+<div class="project-hire-info">
+<div class="content-divider"></div>
+<div class="projects-amount">
+    <h5>Rate</h5>
+<h3>{{i.currency}}{{i.rate}}.00</h3>
+</div>
+<div class="content-divider"></div>
+<div class="projects-action text-center">
+    <div class="">Ongoing</div>
+    <p>Hired on {{i.hiredon}}</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endfor %}
+</div>
+
+<div role="tabpanel" id="completedprojects" class="tab-pane fade">
+    {% for i in completed %}
+<div class="my-projects-list">
+<div class="row">
+<div class="col-lg-12 flex-wrap">
+<div class="projects-card flex-fill">
+<div class="card-body">
+<div class="projects-details align-items-center">
+<div class="project-info">
+<span>{{i.user}}</span>
+<h2>{{i.title}}</h2>
+<div class="customer-info">
+<ul class="list-details">
+<li>
+<div class="slot">
+<p>Hired On</p>
+<h5>{{i.hiredon}}</h5>
+</div>
+</li>
+<li>
+<div class="slot">
+<p>category</p>
+<h5>{{i.category}}</h5>
+</div>
+</li>
+<li>
+<div class="slot">
+<p>Campleted On</p>
+<h5>{{i.completed}}</h5>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="project-hire-info">
+<div class="content-divider"></div>
+<div class="projects-amount">
+    <h5>Rate</h5>
+<h3>{{i.currency}}{{i.rate}}.00</h3>
+
+</div>
+<div class="content-divider"></div>
+<div class="projects-action text-center">
+<h4 class="completed-badge"><span><i class="fas fa-medal me-2"></i></span>Completed</h4>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endfor %}
+</div>
+</div>
+
+</div>
+
+<script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>
+
+<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+
+<script src="{% static 'assets/plugins/select2/js/select2.min.js' %}"></script>
+
+<script src="{% static 'assets/js/slick.js' %}"></script>
+
+<script src="{% static 'assets/plugins/theia-sticky-sidebar/ResizeSensor.js' %}"></script>
+<script src="{% static 'assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js' %}"></script>
+
+<script src="{% static 'assets/js/script.js' %}"></script>
+
+<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'js/jquery-ui.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'js/isotope-3.0.6.min.js' %}"></script>
+<script src="{% static 'js/chosen.min.js' %}"></script>
+<script src="{% static 'js/chart.js' %}"></script>
+<script src="{% static 'js/line-chart.js' %}"></script>
+<script src="{% static 'js/doughutchart.js' %}"></script>
+<script src="{% static 'js/moment.min.js' %}"></script>
+<script src="{% static 'js/daterangepicker.js' %}"></script>
+<script src="{% static 'js/purecounter.js' %}"></script>
+<script src="{% static 'js/progresscircle.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
+{% endblock content %}

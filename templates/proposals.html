@@ -1,0 +1,82 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+{% load static %}
+<div class="dashboard-content-wrap">
+        <div class="container-fluid">
+<div class="proposals-section mb-4">
+<h3 class="page-subtitle">Proposals By freelancer</h3>
+        <div class="row">
+        {% for i in proposals %}
+<div class="proposal-card">
+
+<div class="project-proposals align-items-center">
+<div class="proposals-info">
+<div class="proposer-info">
+        <div class="col-lg-2">
+<div class="proposer-img">
+<img src="{{ i.senderimg.url }}" alt="" class="img-fluid" style="height:54px">
+</div>
+        </div>
+<div class="proposer-detail">
+<h4>{{ i.ptitle }}</h4>
+<ul class="proposal-details">
+<li> {{i.projsender }}</li>
+<li> February 26, 2021</li>
+<li> <a href="{% url 'freelancer-details' i.projsender %}"><h6 style="color:green;"> View Profile</h6></a></li>
+</ul>
+</div>
+</div>
+<div class="proposer-bid-info">
+<div class="proposer-bid">
+<h3>{{i.currency}}{{i.price}}.00</h3>
+<h5>in {{i.days}} Days</h5>
+</div>
+
+
+<div class="proposer-confirm">
+<a class="projects-btn"href="{% url 'send-msg' pk=i.pk %}">Hire Now</a>
+</div>
+
+</div>
+</div>
+<div class="description-proposal">
+<h5 class="desc-title">Description</h5>
+<p>{{i.description}}
+</div>
+</div>
+</div>
+{% endfor %}
+                </div>
+</div>
+
+
+<script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>
+
+<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+
+<script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+
+<script src="{% static 'assets/plugins/select2/js/select2.min.js' %}"></script>
+
+<script src="{% static 'assets/js/slick.js' %}"></script>
+
+<script src="{% static 'assets/js/script.js' %}"></script>
+
+<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'js/jquery-ui.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'js/isotope-3.0.6.min.js' %}"></script>
+<script src="{% static 'js/chosen.min.js' %}"></script>
+<script src="{% static 'js/chart.js' %}"></script>
+<script src="{% static 'js/line-chart.js' %}"></script>
+<script src="{% static 'js/doughutchart.js' %}"></script>
+<script src="{% static 'js/moment.min.js' %}"></script>
+<script src="{% static 'js/daterangepicker.js' %}"></script>
+<script src="{% static 'js/purecounter.js' %}"></script>
+<script src="{% static 'js/progresscircle.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
+{% endblock content %}

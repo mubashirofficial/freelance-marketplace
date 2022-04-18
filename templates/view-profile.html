@@ -1,0 +1,279 @@
+{% extends 'index.html' %}
+{% block content %}
+{% load static %}
+
+<div class="breadcrumb-bar">
+<div class="container">
+<div class="row align-items-center inner-banner">
+<div class="col-md-12 col-12 text-center">
+<h2 class="breadcrumb-title">Developer Details</h2>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="content">
+<div class="container">
+<div class="row">
+<div class="col-md-12">
+<div class="profile">
+<div class="profile-box">
+<div class="provider-widget">
+<div class="pro-info-left">
+<div class="provider-img"><img src="{{ freelancer.userimg.url }}" alt="User"></div>
+<div class="profile-info"><br>
+<h2 class="profile-title">{{ freelancer.fullname }}</h2>
+<p class="profile-position">{{ freelancer.designation }}</p>
+</div>
+</div>
+<div class="pro-info-right profile-inf r-0">
+<ul class="profile-right">
+<li><div><h3 class="amt-hr">{{freelancer.currency}}{{freelancer.rate}}</h3> <p>( Per Hour )</p></div></li>
+</ul>
+<div class="d-flex align-items-center justify-content-md-end justify-content-center">
+<a href="javascript:void(0)"><i class="fas fa-heart heart fa-2x me-2 orange-text"></i></a>
+<a class="btn bid-btn" data-bs-toggle="modal" href="#hire" style="background-color:#299e5d;color:white;border:none;">Hire Now <i class="fas fa-long-arrow-alt-right"></i></a>
+</div>
+</div>
+</div>
+</div>
+<div class="profile-list">
+<ul>
+<li style="text-align: left;margin-right:110px;">
+<span class="cont bg-blue">{{completed}}</span>
+<strong class="proj-title"> Completed Projects</strong>
+</li>
+<li style="text-align: left;margin-right:110px;">
+<span class="cont bg-red">{{bidswon}}</span>
+<strong class="proj-title"> Bids won</strong>
+</li>
+<li style="text-align: left;margin-right:110px;">
+<span class="cont bg-yellow">{{bidswon}}</span>
+<strong class="proj-title">hired</strong>
+</li>
+
+<li  style="text-align: left;margin-right:px;">
+<span class="cont bg-navy">{{feedbacks}}</span>
+<strong class="proj-title"> Feedbacks</strong>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-8 col-md-12">
+<div class="pro-view">
+
+<nav class="provider-tabs mb-4">
+<ul class="nav nav-tabs nav-tabs-solid nav-justified">
+<li class="nav-item">
+<a class="nav-link" href="#overview">
+<img src="{% static 'assets/img/icon/tab-icon-01.png' %}" height="25" alt="User Image">
+<p class="bg-red">Overview</p>
+</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#experience">
+<img src="{% static 'assets/img/icon/tab-icon-03.png' %}" height="25" alt="User Image">
+<p class="bg-violet">Experience</p>
+</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#education">
+<img src="{% static 'assets/img/icon/tab-icon-04.png' %}" height="25" alt="User Image">
+<p class="bg-yellow">Education</p>
+</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#skill">
+<img src="{% static 'assets/img/icon/tab-icon-05.png' %}" height="25" alt="User Image">
+<p class="bg-pink">Skills</p>
+</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#feedback">
+<img src="{% static 'assets/img/icon/tab-icon-06.png' %}" height="25" alt="User Image">
+<p class="bg-green">Feedbacks</p>
+</a>
+</li>
+</ul>
+</nav>
+
+
+<div class="pro-post widget-box" id="overview">
+<h3 class="pro-title">Overview</h3>
+<div class="pro-content">
+<p>{{freelancer.overview}}</p>
+</div>
+</div>
+
+<div class="pro-post project-widget widget-box" id="experience">
+<h3 class="pro-title">Experience</h3>
+<div class="pro-content">
+<div class="widget-list mb-0">
+<ul class="clearfix">
+<li>
+<h4>{{freelancer.extitle}}</h4>
+<h5>{{freelancer.excompany}} {{freelancer.exstart}} - {{freelancer.exend}}</h5>
+<p>{{freelancer.exsummary}}</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div class="pro-post project-widget widget-box" id="education">
+<h3 class="pro-title">Highest Education Completed</h3>
+<div class="pro-content">
+<div class="widget-list mb-0">
+<ul class="clearfix">
+<li>
+<h4>{{freelancer.edtitle}}</h4>
+<h5>{{freelancer.eduniversity}} {{freelancer.edend}}</h5>
+<p>{{freelancer.edsummary}}</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div class="pro-post project-widget widget-box" id="skill">
+<h3 class="pro-title">Technical Skills</h3>
+<div class="pro-content">
+<div class="tags">
+<span class="badge badge-pill badge-skills">+ {{freelancer.skill1}}</span>
+<span class="badge badge-pill badge-skills">+ {{freelancer.skill2}}</span>
+<span class="badge badge-pill badge-skills">+ {{freelancer.skill3}}</span>
+<span class="badge badge-pill badge-skills">+ {{freelancer.skill4}}</span>
+    <span class="badge badge-pill badge-skills">+ {{freelancer.skill5}}</span>
+</div>
+</div>
+</div>
+
+
+<div class="pro-post author-widget clearfix" id="feedback">
+<div class="widget-title-box clearfix">
+<h3 class="pro-title mb-0">Feedbacks</h3>
+</div>
+     {% for i in review %}
+    <div class="about-author">
+    <div class="row">
+        <div class="col-lg-2">
+       <div class="author-img-wrap">
+<a><img class="img-fluid" src="{{i.rimg.url}}" style="width:60px;"></a>
+       </div></div>
+
+<div class="col-lg-10">
+<h4>{{i.title}}</h4>
+    <p>{{i.rfname}} {{i.rlname}}</p>
+<div class="rating">
+<span class="average-rating">{{i.rating}}</span>
+<i class="fas fa-star {% if i.rating > 0 %} filled {% endif %}"></i>
+<i class="fas fa-star {% if i.rating > 1 %} filled {% endif %}"></i>
+<i class="fas fa-star {% if i.rating > 2 %} filled {% endif %}"></i>
+<i class="fas fa-star {% if i.rating > 3 %} filled {% endif %}"></i>
+<i class="fas fa-star {% if i.rating > 4 %} filled {% endif %}"></i>
+</div>
+<p class="mb-0">{{i.review}}</p>
+</div><br>
+    </div>
+
+</div>
+     {% endfor %}
+</div>
+</div>
+</div>
+
+<div class="col-lg-4 col-md-12 sidebar-right theiaStickySidebar">
+
+
+<div class="pro-post widget-box language-widget">
+<h4 class="pro-title mb-0">Language Skills</h4>
+<ul>
+<li>{{freelancer.lang1}}
+</li>
+<li>{{freelancer.lang2}}
+</li>
+<li>{{freelancer.lang3}}
+</li>
+    <li>{{freelancer.lang4}}
+</li>
+</ul>
+</div>
+
+
+<div class="pro-post widget-box about-widget">
+<h4 class="pro-title mb-0">About Me</h4>
+<ul class="latest-posts pro-content">
+<li><p>Gender</p><h6>{{freelancer.gender}}</h6></li>
+<li><p>Category</p><h6>{{freelancer.category}}</h6></li>
+<li><p>Location</p><h6>{{freelancer.location}}</h6></li>
+</ul>
+</div>
+
+
+<div class="pro-post category-widget">
+<div class="widget-title-box">
+<h4 class="pro-title">Social Links</h4>
+</div>
+<ul class="latest-posts pro-content mb-3">
+<li><a href="{{freelancer.mylink}}">{{freelancer.mylink}}</a></li>
+<li><a href="{{freelancer.link1}}">{{freelancer.slink1}}</a></li>
+<li><a href="{{freelancer.link2}}">{{freelancer.slink2}}</a></li>
+<li><a href=" {{freelancer.link3}}"> {{freelancer.slink3}}</a></li>
+<li><a href="{{freelancer.link4}}">{{freelancer.slink4}}</a></li>
+</ul>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="hire">
+<div class="modal-dialog modal-dialog-centered modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title">SEND MESSAGE</h4>
+<span class="modal-close"><a href="#" data-bs-dismiss="modal" aria-label="Close"><i class="far fa-times-circle orange-text"></i></a></span>
+</div>
+<div class="modal-body">
+<div class="modal-info">
+<form action="{% url 'hire-message' freelancer.slug %}" method="post">
+    {% csrf_token %}
+<div class="feedback-form">
+<div class="row">
+<div class="col-md-6 form-group">
+<input type="text" class="form-control" name="nam" placeholder="Full Name" required>
+</div>
+<div class="col-md-12 form-group">
+<textarea rows="5" class="form-control" name="message" placeholder="Message" required></textarea>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12 submit-section">
+<label class="custom_check">
+<input type="checkbox" name="select_time" required>
+<span class="checkmark" aria-required="False"></span> I agree to the Terms And Conditions
+</label>
+</div>
+<div class="col-md-12 submit-section text-end">
+<button class="btn btn-primary submit-btn" type="submit" style="background-color:#299e5d;border:none">SEND MESSAGE</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+{% endblock content %}

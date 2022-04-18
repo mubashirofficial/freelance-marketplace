@@ -1,0 +1,59 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+{% load static %}
+
+
+<div class="dashboard-content-wrap">
+<div class="container-fluid">
+<div class="col-lg-12">
+<div class="card">
+<div class="card-header">
+<h3 class="pro-title without-border">Reviews</h3>
+</div>
+<div class="card-body">
+<div class="reviews">
+    {% for i in review %}
+    <div class="row">
+        <div class="col-lg-1">
+       <div class="author-img-wrap">
+<a><img class="img-fluid" src="{{i.rimg.url}}" style="width:60px;"></a>
+       </div></div>
+
+<div class="col-lg-11">
+<h4>{{i.title}}</h4>
+    <p>{{i.rfname}} {{i.rlname}}</p>
+<div class="rating">
+<span class="average-rating">{{i.rating}}</span>
+<i class="fas fa-star {% if i.rating > 0 %} filled {% endif %}"></i>
+<i class="fas fa-star {% if i.rating > 1 %} filled {% endif %}"></i>
+<i class="fas fa-star {% if i.rating > 2 %} filled {% endif %}"></i>
+<i class="fas fa-star {% if i.rating > 3 %} filled {% endif %}"></i>
+<i class="fas fa-star {% if i.rating > 4 %} filled {% endif %}"></i>
+</div>
+<p class="mb-0">{{i.review}}</p>
+</div>
+    </div>&nbsp;
+    {% endfor %}
+</div>
+</div>
+</div>
+</div>
+
+<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'js/jquery-ui.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'js/isotope-3.0.6.min.js' %}"></script>
+<script src="{% static 'js/chosen.min.js' %}"></script>
+<script src="{% static 'js/chart.js' %}"></script>
+<script src="{% static 'js/line-chart.js' %}"></script>
+<script src="{% static 'js/doughutchart.js' %}"></script>
+<script src="{% static 'js/moment.min.js' %}"></script>
+<script src="{% static 'js/daterangepicker.js' %}"></script>
+<script src="{% static 'js/purecounter.js' %}"></script>
+<script src="{% static 'js/progresscircle.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
+{% endblock content %}

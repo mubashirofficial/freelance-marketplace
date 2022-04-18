@@ -1,0 +1,58 @@
+{% extends 'index.html' %}
+
+{% block content %}
+{% load static %}
+
+<div class="breadcrumb-bar">
+<div class="container">
+<div class="row align-items-center inner-banner">
+<div class="col-md-12 col-12 text-center">
+<h2 class="breadcrumb-title">Blogs</h2>
+</div>
+</div>
+</div>
+</div>
+
+<section class="blog-area">
+    <div class="container">
+        <div class="row">
+            {% for post in posts %}
+            <div class="col-lg-4 responsive-column">
+                <div class="card-item card-item-layout-2">
+                    <div class="card-content-wrap">
+                        <div class="card-badge-wrap">
+                            <div class="icon-element">
+                                <i class="la la-share-alt"></i>
+                                 <ul class="shared-list">
+                                    <li><a href="#"><i class="la la-facebook"></i></a></li>
+                                     <li><a href="#"><i class="la la-twitter"></i></a></li>
+                                     <li><a href="#"><i class="la la-instagram"></i></a></li>
+                                 </ul>
+                            </div>
+                        </div>
+                        <img src="{{ post.bimg.url }}" alt="blog image" class="img-fluid">
+                        <div class="card-content">
+                            <p class="card-meta">
+                                <span class="d-block"><img src="{% static 'assets/img/admin.jpg' %}" alt="" class="author-avatar"></span>
+                                <span class="font-weight-semi-bold">Bidlance Admin</span>
+                                <span>{{ post.date_added}}</span>
+                            </p>
+                            <h4 class="card-title">
+                                <a href="{% url 'blogdetails' post.slug %}">{{ post.title}}</a>
+                            </h4>
+                        </div><!-- end card-content -->
+                    </div><!-- end card-content-wrap -->
+                </div><!-- end card-item -->
+            </div><!-- end col-lg-4 -->
+            {% endfor %}
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- end blog-area -->
+
+
+
+
+
+
+
+{% endblock content %}

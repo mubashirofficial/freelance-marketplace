@@ -1,0 +1,175 @@
+{% extends 'home.html' %}
+
+{% block content %}
+{% load static %}
+<section class="form-shared padding-top-100px padding-bottom-100px">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mx-auto">
+                <div class="user-action-form">
+                    <div class="tab-shared tab-shared-3">
+                        <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link theme-btn active" id="login-tab" data-toggle="tab" href="#login-nav" role="tab" aria-controls="login-nav" aria-selected="true">
+                                    <i class="la la-sign-in"></i> Login to Account
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link theme-btn" id="signup-tab" data-toggle="tab" href="#signup-nav" role="tab" aria-controls="signup-nav" aria-selected="false">
+                                    <i class="la la-user"></i> Register Account
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="login-nav" role="tabpanel" aria-labelledby="login-tab">
+                            <div class="billing-form-item mb-0">
+                                <div class="billing-title-wrap border-bottom-0 text-center">
+                                    <h3 class="widget-title font-size-28 pb-2">Welcome Back</h3>
+                                    <p>Don't miss your next opportunity<br> Sign in to stay updated on your professional world</p>
+                                </div><!-- billing-title-wrap -->
+                                {% for message in messages %}
+                                <br><div class="row">
+                                    <div class="col-lg-1"></div>
+                                 <div class="alert col-lg-10">
+                                 <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                                 <strong></strong>{{ message }}
+                                 </div>
+                                    <div class="col-lg-1"></div>
+                            </div>
+                                {% endfor %}
+                                <div class="billing-content">
+                                    <div class="contact-form-action">
+                                        <form method="post" action="/login">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="input-box">
+                                                        <label class="label-text">Username</label>
+                                                        <div class="form-group">
+                                                            <i class="la la-user form-icon"></i>
+                                                            <input class="form-control" type="text" name="user" placeholder="Your username" required>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- end col-lg-12 -->
+                                                <div class="col-lg-12">
+                                                    <div class="input-box">
+                                                        <label class="label-text">Password</label>
+                                                        <div class="form-group">
+                                                            <i class="la la-lock form-icon"></i>
+                                                            <input class="form-control password-field" type="password" name="password" placeholder="Password" required>
+                                                            <a href="javascript:void(0)" class="btn toggle-password" title="Toggle show/hide password">
+                                                                <i class="la la-eye eye-on"></i>
+                                                                <i class="la la-eye-slash eye-off"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- end col-lg-12 -->
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <div class="custom-checkbox mr-0 d-flex align-items-center justify-content-between">
+                                                            <div>
+                                                                <input type="checkbox" id="chb1">
+                                                                <label for="chb1">Remember Me</label>
+                                                            </div>
+                                                            <div>
+                                                                <a href="/password-reset" class="color-text">Forgot password?</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- end col-lg-12 -->
+                                                <div class="col-lg-12">
+                                                    <div class="btn-box margin-top-20px margin-bottom-10px">
+                                                        <button class="theme-btn border-0" type="submit">Login Account</button>
+                                                    </div>
+                                                </div><!-- end col-lg-12 -->
+                                            </div><!-- end row -->
+                                        </form>
+                                    </div><!-- end contact-form-action -->
+                                </div><!-- end billing-content -->
+                            </div><!-- end billing-form-item -->
+                        </div><!-- end tab-pane -->
+                        <div class="tab-pane fade" id="signup-nav" role="tabpanel" aria-labelledby="signup-tab">
+                            <div class="billing-form-item mb-0">
+                                <div class="billing-title-wrap border-bottom-0 text-center">
+                                    <h3 class="widget-title font-size-28 pb-2">Join BidLance</h3>
+                                    <p> Make the most of your professional life
+                                        <br> you can bid to multiple jobs in seconds! <br>
+                                    </p>
+                                </div><!-- billing-title-wrap -->
+                                <div class="billing-content">
+                                    <div class="contact-form-action">
+                                        <form method="post" action="/sign-up">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                            </div><!-- end row -->
+                                            <div class="input-box">
+                                                <label class="label-text">First name</label>
+                                                <div class="form-group">
+                                                    <i class="la la-user form-icon"></i>
+                                                    <input class="form-control" type="text" name="fn" placeholder="First name">
+                                                </div>
+                                            </div><!-- input-box -->
+                                            <div class="input-box">
+                                                <label class="label-text">Last name</label>
+                                                <div class="form-group">
+                                                    <i class="la la-user form-icon"></i>
+                                                    <input class="form-control" type="text" name="ln" placeholder="Last name">
+                                                </div>
+                                            </div><!-- input-box -->
+                                            <div class="input-box">
+                                                <label class="label-text">Username</label>
+                                                <div class="form-group">
+                                                    <i class="la la-user form-icon"></i>
+                                                    <input class="form-control" type="text" name="un" placeholder="Enter Username">
+                                                </div>
+                                            </div>
+                                            <div class="input-box">
+                                                <label class="label-text">Email</label>
+                                                <div class="form-group">
+                                                    <i class="la la-envelope-o form-icon"></i>
+                                                    <input class="form-control" type="email" name="email" placeholder="Enter email address">
+                                                </div>
+                                            </div><!-- input-box -->
+                                            <div class="input-box mb-3">
+                                                <label class="label-text">Password</label>
+                                                <div class="form-group mb-0">
+                                                    <i class="la la-lock form-icon"></i>
+                                                    <input class="form-control password-field" type="password" name="pass" placeholder="Password">
+                                                    <a href="javascript:void(0)" class="btn toggle-password" title="Toggle show/hide password">
+                                                        <i class="la la-eye eye-on"></i>
+                                                        <i class="la la-eye-slash eye-off"></i>
+                                                    </a>
+                                                </div>
+                                                <span class="mt-1">Must use 8-15 characters</span>
+                                            </div><!-- input-box -->
+                                            <div class="input-box">
+                                                <label class="label-text">Confirm Password</label>
+                                                <div class="form-group">
+                                                    <i class="la la-lock form-icon"></i>
+                                                    <input class="form-control password-field" type="password" name="password" placeholder="Confirm password">
+                                                </div>
+                                            </div><!-- input-box -->
+                                            <div class="input-box">
+                                                <div class="form-group">
+                                                    <div class="custom-checkbox d-block mr-0">
+                                                        <input type="checkbox" id="chb3" required>
+                                                        <label for="chb3">I Agree to BidLance<a class="color-text">Privacy Policy</a> and <a class="color-text">Terms of Services</a></label>
+                                                    </div><!-- end custom-checkbox -->
+                                                </div>
+                                            </div><!-- input-box -->
+                                            <div class="btn-box margin-top-30px">
+                                                <button class="theme-btn border-0" type="submit">Create Account</button>
+                                            </div>
+                                        </form>
+                                    </div><!-- end contact-form-action -->
+                                </div><!-- end billing-content -->
+                            </div><!-- end billing-form-item -->
+                        </div><!-- end tab-pane -->
+                    </div><!-- end tab-content -->
+                </div>
+            </div><!-- end col-lg-6 -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section>
+{% endblock content %}

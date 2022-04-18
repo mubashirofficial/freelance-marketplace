@@ -1,0 +1,80 @@
+{% extends 'author/index.html' %}
+{% block content %}
+{% load static %}
+
+<div class="page-wrapper">
+<div class="content container-fluid">
+
+<div class="page-header">
+<div class="row align-items-center">
+<div class="col">
+<h3 class="page-title">Freelancers</h3>
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-sm-12">
+<div class="card">
+<div class="card-body">
+<div class="table-responsive">
+<table class="table table-center datatable">
+<thead>
+<tr>
+<th>Image</th>
+    <th>username</th>
+<th>Email</th>
+<th>Expertise</th>
+<th>Joined date</th>
+</tr>
+</thead>
+<tbody>
+{% for i in resume %}
+<tr>
+<td>
+<h2 class="table-avatar">
+<a href="profile.html"><img class="me-2 rounded-circle" src="{{ i.userimg.url }}" alt="User Image">
+</a>
+</h2>
+</td>
+    <td>{{i.user}}</td>
+    <td>{{i.email}}</td>
+<td>
+<button class="btn table-btn">{{i.designation}}</button>
+</td>
+<td>{{i.date_added}}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="modal custom-modal fade" id="delete_category" role="dialog">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content">
+<div class="modal-body">
+<div class="form-header">
+<h3>Delete</h3>
+<p>Are you sure want to delete?</p>
+</div>
+<div class="modal-btn delete-action">
+<div class="row">
+<div class="col-6">
+<a href="javascript:void(0);" class="btn btn-primary continue-btn">Delete</a>
+</div>
+<div class="col-6">
+<a href="javascript:void(0);" data-bs-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,155 @@
+{% extends 'index.html' %}
+
+{% block content %}
+{% load static %}
+
+<div class="breadcrumb-bar">
+<div class="container">
+<div class="row align-items-center inner-banner">
+<div class="col-md-12 col-12 text-center">
+<h2 class="breadcrumb-title">Blog Details</h2>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+<section class="blog-area padding-top-10px ">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="blog-single-card">
+                    <div class="card-item card-item-layout-2">
+                        <div class="card-content-wrap">
+                            <div class="card-badge-wrap">
+                                <div class="icon-element">
+                                <i class="la la-share-alt"></i>
+                                 <ul class="shared-list">
+                                    <li><a href="#"><i class="la la-facebook"></i></a></li>
+                                     <li><a href="#"><i class="la la-twitter"></i></a></li>
+                                     <li><a href="#"><i class="la la-instagram"></i></a></li>
+                                 </ul>
+                            </div>
+                            </div>
+                            <img src="{{ post.bimg.url }}" alt="blog image" class="img-fluid">
+                            <div class="card-content">
+                                <p class="card-meta">
+                                    <span class="d-block"><img src="{% static 'assets/img/admin.jpg' %}" alt="" class="author-avatar"></span>
+                                    <span class="font-weight-semi-bold">BidLance admin</span>
+                                    <span>{{post.date_added}}</span>
+                                    <span>- 3 Comments</span>
+                                </p>
+                                <h4 class="card-title mb-4 font-size-24 line-height-35">
+                                    {{ post.title }}
+                                </h4>
+                                <div class="section-block"></div>
+                                <p class="card-text mt-4 mb-3">
+                                    {{ post.description }}
+                                </p>
+                                <div class="tag-items mt-4">
+                                    <ul class="social-profile mt-4">
+                                        <li class="font-weight-semi-bold color-text-2 mr-2">Share post:</li>
+                                        <li><a href="#"><i class="la la-facebook"></i></a></li>
+                                        <li><a href="#"><i class="la la-twitter"></i></a></li>
+                                        <li><a href="#"><i class="la la-instagram"></i></a></li>
+                                        <li><a href="#"><i class="la la-linkedin"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div><!-- end card-content -->
+                        </div><!-- end card-content-wrap -->
+                    </div><!-- end card-item -->
+                    <div class="comments-wrap margin-top-30px">
+                        <h2 class="widget-title">4 Comments</h2>
+                        <div class="title-shape"></div>
+                        <ul class="comments-list padding-top-40px">
+                            <li>
+                                <div class="comment">
+                                    <img class="avatar__img" alt="" src="images/small-team1.jpg">
+                                    <div class="comment-body">
+                                        <div class="meta-data">
+                                            <span class="comment__author">adam smith</span>
+                                            <span class="comment__date">17 Dec, 2018 - 4:00 AM</span>
+                                        </div>
+                                        <p class="comment-content">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                            Ut enim ad minim veniam, quis nostrud exercitation.
+                                            Curabitur non nulla sit amet nisl tempus
+                                        </p>
+                                    </div>
+                                </div><!-- end comment -->
+                                <div class="comment">
+                                    <img class="avatar__img" alt="" src="images/small-team3.jpg">
+                                    <div class="comment-body">
+                                        <div class="meta-data">
+                                            <span class="comment__author">Matt Derry</span>
+                                            <span class="comment__date">17 Dec, 2018 - 4:00 PM</span>
+                                        </div>
+                                        <p class="comment-content">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                            Ut enim ad minim veniam, quis nostrud exercitation.
+                                            Curabitur non nulla sit amet nisl tempus
+                                        </p>
+                                    </div>
+                                </div><!-- end comment -->
+                            </li>
+                        </ul>
+                    </div><!-- end comments-wrap -->
+                    <div class="add-comment-wrap margin-top-60px">
+                        <div class="billing-form-item">
+                            <div class="billing-title-wrap">
+                                <h2 class="widget-title">Give a Comment</h2>
+                                <div class="title-shape"></div>
+                                <p class="mt-3">Your email address will not be published. Required fields are marked *</p>
+                            </div><!-- billing-title-wrap -->
+                            <div class="billing-content">
+                                <div class="contact-form-action">
+                                    <form method="post">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="input-box">
+                                                    <label class="label-text">Name</label>
+                                                    <div class="form-group">
+                                                        <span class="la la-user form-icon"></span>
+                                                        <input class="form-control" type="text" name="name" placeholder="Your Name">
+                                                    </div>
+                                                </div>
+                                            </div><!-- end col-lg-12 -->
+                                            <div class="col-lg-6">
+                                                <div class="input-box">
+                                                    <label class="label-text">Email</label>
+                                                    <div class="form-group">
+                                                        <span class="la la-envelope-o form-icon"></span>
+                                                        <input class="form-control" type="email" name="email" placeholder="Email Address">
+                                                    </div>
+                                                </div>
+                                            </div><!-- end col-lg-12 -->
+                                            <div class="col-lg-12">
+                                                <div class="input-box">
+                                                    <label class="label-text">Message</label>
+                                                    <div class="form-group">
+                                                        <span class="la la-pencil form-icon"></span>
+                                                        <textarea class="message-control form-control" name="message" placeholder="Write Message"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div><!-- end col-lg-12 -->
+                                            <div class="col-lg-12">
+                                                <div class="btn-box">
+                                                    <button class="theme-btn border-0" type="submit" value="submit">Submit Comment</button>
+                                                </div>
+                                            </div><!-- end col-lg-12 -->
+                                        </div>
+                                    </form><!-- end row -->
+                                </div>
+                            </div><!-- end billing-content -->
+                        </div>
+                    </div><!-- end add-comment-wrap -->
+                </div><!-- end blog-single-card -->
+            </div><!-- end col-lg-8 -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- end blog-area -->
+{% endblock content %}

@@ -1,0 +1,143 @@
+{% extends 'index.html' %}
+{% block content %}
+{% load static %}
+
+<div class="breadcrumb-bar" >
+<div class="container" >
+<div class="row align-items-center inner-banner">
+<div class="col-md-12 col-12 text-center">
+<h2 class="breadcrumb-title" >Projects</h2>
+</div>
+</div>
+</div>
+</div>
+<section class="card-area ">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 margin-bottom-30px">
+                <div class="generic-header generic-header-2">
+                    <div class="generic-nav-wrap">
+                        <nav>
+                            <div class="nav nav-tabs generic-nav" id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link" id="list-view-tab" data-toggle="tab" href="#list-view" role="tab" aria-controls="list-view" aria-selected="true">
+                                    <span class="la la-list" data-toggle="tooltip" data-placement="top" title="List View"></span>
+                                </a>
+                                <a class="nav-item nav-link active" id="grid-view-tab" data-toggle="tab" href="#grid-view" role="tab" aria-controls="grid-view" aria-selected="false">
+                                    <span class="la la-th-large" data-toggle="tooltip" data-placement="top" title="Grid View"></span>
+                                </a>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="col-lg-11 ">
+                        <form action="/search-projects" method="post">
+                            {% csrf_token %}
+                    <div class="main-search-input">
+                            <div class="main-search-input-item user-chosen-select-container">
+                                <select class="user-chosen-select" name="category">
+                                    {% for i in category %}
+                                    <option value="{{i.category}}">{{i.category}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div><!-- end main-search-input-item -->
+                            <div class="main-search-input-btn">
+                                <button class="button theme-btn line-height-50" style="border:none;">Search</button>
+                            </div><!-- end main-search-input-btn -->
+                        </div>
+                        </form>
+                    </div>
+                </div><!-- end generic-header -->
+            </div><!-- col-lg-12 -->
+            <div class="col-lg-12">
+                <div class="jobs-wrapper">
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade active show" id="grid-view" role="tabpanel" aria-labelledby="grid-view-tab">
+                            <div class="job-content">
+                                <div class="row">
+                                    {% for project in projects %}
+                                    <div class="col-md-4 col-lg-12 col-xl-4 responsive-column">
+                                        <div class="job-card">
+                                            <div class="job-card-content">
+                                                <div class="card-head d-flex align-items-center">
+                                                    <div class="company-avatar mr-3">
+                                                        <a href="" class="d-block">
+                                                            <img src="{{project.userimg.url}}" style="height:72px">
+                                                        </a>
+                                                    </div>
+                                                    <div class="company-title-box">
+                                                        <p class="card-sub">{{project.user}}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="card-content mt-4 margin-bottom-30px">
+                                                    <h4 class="card-title mb-1"><a href="{% url 'project-details' project.slug %}">{{project.title}}</a> </h4>
+                                                </div>
+                                                <div class="section-block-2"></div>
+                                                <div class="card-foot d-flex align-items-center justify-content-between mt-4">
+                                                    <div class="row">
+                                                    <div class="col-md-4">
+                                                    <span class="color-text-2 font-size-14">Category</span><br>
+                                                    <span class="color-text-1 font-size-13">{{project.category}}</span></div>
+                                                     <div class="col-md-4">
+                                                    <span class="color-text-2 font-size-14">Posted On</span><br>
+                                                         <span class="color-text-1 font-size-13">{{project.date_added}}</span></div>
+                                                    <div class="col-md-4">
+                                                    <span class="color-text-2 font-size-14">Price Range</span><br>
+                                                        <span class="color-text-1 font-size-13">{{project.currency}}{{project.minrate}} - {{project.currency}}{{project.maxrate}}</span></div>
+                                                </div><br>
+                                            </div>
+                                                 <div class="btn-box">
+                                            <a href="{% url 'project-details' project.slug %}" class="theme-btn">View Details</a>
+                                            </div>
+                                            </div><!-- end job-card-content -->
+                                        </div><!-- end job-card -->
+                                    </div><!-- end col-lg-6 -->
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div><!-- end tab-pane -->
+                        <div class="tab-pane fade" id="list-view" role="tabpanel" aria-labelledby="list-view-tab">
+                            <div class="job-content">
+                                {% for project in projects %}
+                                <div class="job-card job-card-layout">
+                                    <div class="job-card-details d-flex align-items-center justify-content-between">
+                                        <div class="card-head d-flex align-items-center">
+                                            <div class="company-avatar mr-3">
+                                                <a href="" class="d-block">
+                                                    <img src="{{project.userimg.url}}" style="height:72px">
+                                                </a>
+                                            </div>
+                                            <div class="company-title-box">
+                                                <p class="card-sub mb-1 font-weight-medium">{{project.user}}</p>
+                                                <h4 class="card-title mb-1"><a href="{% url 'project-details' project.slug %}">{{project.title}}</a> </h4>
+                                                <div class="card-foot d-flex align-items-center justify-content-between mt-8">
+                                                    <div>
+                                                    <span class="color-text-2 font-size-13">Category</span><br>
+                                                    <span class="color-text-1 font-size-13">{{project.category}}</span></div>&nbsp;&nbsp;&nbsp;
+                                                     <div>
+                                                    <span class="color-text-2 font-size-13">Posted On</span><br>
+                                                         <span class="color-text-1 font-size-13">{{project.date_added}}</span></div>&nbsp;&nbsp;&nbsp;
+                                                    <div>
+                                                    <span class="color-text-2 font-size-13">Price Range</span><br>
+                                                        <span class="color-text-1 font-size-13">{{project.currency}}{{project.minrate}} - {{project.currency}}{{project.maxrate}}</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="btn-box">
+                                            <a href="{% url 'project-details' project.slug %}" class="theme-btn">view details</a>
+                                        </div>
+                                    </div>
+                                </div><!-- end job-card -->
+                                {% endfor %}
+                            </div><!-- end job-content -->
+
+                        </div><!-- end tab-pane -->
+                    </div><!-- end tab-content -->
+                </div><!-- end jobs-wrapper -->
+            </div><!-- end col-lg-9 -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- end card-area -->
+
+
+
+
+{% endblock content %}

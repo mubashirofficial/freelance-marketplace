@@ -1,0 +1,80 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+{% load static %}
+<div class="dashboard-content-wrap">
+        <div class="container-fluid">
+<div class="col-md-12">
+<div class="page-title">
+<div class="row">
+<div class="col-md-6">
+<h3>Messages</h3>
+</div>
+</div>
+</div>
+<nav class="user-tabs project-tabs">
+<ul role="tablist" class="nav nav-tabs nav-tabs-bottom nav-justified">
+<li class="nav-item">
+<a data-bs-toggle="tab" class="nav-link active" href="#incoming">Incoming Messages</a>
+</li>
+<li class="nav-item">
+<a data-bs-toggle="tab" class="nav-link" href="#send">Send Messages</a>
+</li>
+</ul>
+</nav>
+    <div class="tab-content pt-0">
+<div role="tabpanel" id="incoming" class="tab-pane fade active show">
+    {% for i in rmessage %}
+        <div class="container">
+  <img src="{{i.img.url}}" alt="Avatar" style="width:100%;">
+            <span >@{{i.sender}}</span>
+  <p>{{i.message}}</p>
+  <span class="time-right">{{i.date_added}}</span>
+</div>
+    {% endfor %}
+</div>
+
+<div role="tabpanel" id="send" class="tab-pane fade">
+    {% for i in message %}
+    <div class="container darker">
+  <img src="{{i.img.url}}" alt="Avatar" class="right" style="width:100%;">
+        <span >@{{i.sender}}</span>
+  <p>{{i.message}}</p>
+  <span class="time-left">{{i.date_added}}</span>
+</div>
+
+    {% endfor %}
+</div>
+</div>
+
+<script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>
+
+<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+
+<script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+
+<script src="{% static 'assets/plugins/select2/js/select2.min.js' %}"></script>
+
+<script src="{% static 'assets/js/slick.js' %}"></script>
+
+<script src="{% static 'assets/plugins/theia-sticky-sidebar/ResizeSensor.js' %}"></script>
+<script src="{% static 'assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js' %}"></script>
+
+<script src="{% static 'assets/js/script.js' %}"></script>
+
+<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'js/jquery-ui.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'js/isotope-3.0.6.min.js' %}"></script>
+<script src="{% static 'js/chosen.min.js' %}"></script>
+<script src="{% static 'js/moment.min.js' %}"></script>
+<script src="{% static 'js/daterangepicker.js' %}"></script>
+<script src="{% static 'js/purecounter.js' %}"></script>
+<script src="{% static 'js/progresscircle.js' %}"></script>
+<script src="{% static 'js/jquery.MultiFile.min.js' %}"></script>
+<script src="{% static 'js/emojionearea.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
+{% endblock content %}

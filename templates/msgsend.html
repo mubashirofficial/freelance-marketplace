@@ -1,0 +1,91 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+{% load static %}
+
+<div class="dashboard-content-wrap">
+    <div class="container-fluid">
+
+ <div class="col-md-20">
+<div class="page-title">
+<div class="row">
+<div class="col-md-6">
+<h3>Send Message to {{name.first_name}} {{name.last_name}}</h3>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12 col-lg-12">
+<div class="select-project mb-4">
+<form action="{% url 'msg-send' pk=prop.pk %}" method="post">
+    {% csrf_token %}
+<div class="title-box widget-box">
+  <div class="row">
+<div class="col-lg-6">
+<div class="title-content">
+<div class="title-detail">
+<h3>Full Name</h3>
+<div class="form-group mb-0">
+<input type="text" name="fullname" class="form-control" placeholder="Your Full Name" required>
+</div>
+</div>
+</div>
+</div>
+  </div>
+<div class="title-content pb-0">
+<div class="title-detail">
+<h3>Message</h3>
+<div class="form-group mb-0">
+<textarea class="form-control summernote" rows="5" name="message" required></textarea>
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12 text-end">
+<div class="btn-item">
+<button type="submit" class="btn next-btn" style="background-color:#299e5d;color:white;">Hire</button>
+</div>
+</div>
+</div>
+    </div>
+    </form>
+</div>
+
+</div>
+
+
+</div>
+</div>
+</div>
+
+
+<script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>
+
+<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+
+<script src="{% static 'assets/plugins/select2/js/select2.min.js' %}"></script>
+
+<script src="{% static 'assets/js/slick.js' %}"></script>
+
+<script src="{% static 'assets/plugins/theia-sticky-sidebar/ResizeSensor.js' %}"></script>
+<script src="{% static 'assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js' %}"></script>
+
+<script src="{% static 'assets/js/script.js' %}"></script>
+
+<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'js/jquery-ui.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'js/isotope-3.0.6.min.js' %}"></script>
+<script src="{% static 'js/chosen.min.js' %}"></script>
+<script src="{% static 'js/chart.js' %}"></script>
+<script src="{% static 'js/line-chart.js' %}"></script>
+<script src="{% static 'js/doughutchart.js' %}"></script>
+<script src="{% static 'js/moment.min.js' %}"></script>
+<script src="{% static 'js/daterangepicker.js' %}"></script>
+<script src="{% static 'js/purecounter.js' %}"></script>
+<script src="{% static 'js/progresscircle.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock content %}

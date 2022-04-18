@@ -1,0 +1,313 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+{% load static %}
+<div class="dashboard-content-wrap">
+        <div class="container-fluid">
+            {% if user.pendingresume %}
+            <br><div class="row">
+                                    <div class="col-lg-0.5"></div>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="alert col-lg-11">
+                                 <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                                 <strong></strong>'Your resume is submitted, Bidlance team is verify your resume
+            within 1 or 2 days'
+                                 </div>
+                                <div class="col-lg-0.5"></div>
+            {% else %}
+            <br><div class="row">
+                                    <div class="col-lg-0.5"></div>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="alert col-lg-11">
+                                 <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                                 <strong></strong>Add your Resume On Bidlance Marketplace and get hired in best projects
+                                 </div>
+                                <div class="col-lg-0.5"></div>
+            {% endif %}
+            {% for message in messages %}
+                                <br><div class="row">
+                                    <div class="col-lg-0.5"></div>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="alert col-lg-11">
+                                 <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                                 <strong></strong>{{ message }}
+                                 </div>
+                                <div class="col-lg-0.5"></div>
+                            </div>
+                        {% endfor %}
+<div class="row">
+<div class="col-md-12">
+<div class="pro-pos">
+<div class="setting-content">
+<form action="/pending-resume" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+<div class="card">
+<div class="pro-head">
+<h3 class="pro-title without-border mb-0">Profile Basics </h3>
+</div>
+<div class="pro-body">
+<div class="row">
+<div class="form-group col-md-6">
+<label>Full Name</label>
+<input type="text" name="flname" class="form-control" placeholder="full name" required>
+</div>
+<div class="form-group col-md-6">
+<label>Designation</label>
+<input type="text" name="dsg" class="form-control" placeholder="eg:Front end Developer" required>
+</div>
+
+<div class="form-group col-md-2">
+<label>Currency</label>
+<select name="acurrency" class="form-control select" required>
+<option value="₹">₹Rupees</option>
+<option value="$">$Dollar</option>
+</select>
+</div>
+
+<div class="form-group col-md-4">
+<label>Hourly Rate</label>
+<input type="text" name="rate" class="form-control" placeholder="₹" required>
+<p class="light-pink-text mb-0">Provide your hourly rate without currency symbol</p>
+</div>
+<div class="form-group col-md-6">
+<label>Gender</label>
+<select name="sex" class="form-control select" required>
+<option value="Male">Male</option>
+<option value="Female">Female</option>
+</select>
+</div>
+<div class="form-group col-md-6">
+<label>Category</label>
+<select name="acategory" class="form-control select" required>
+{% for i in category %}
+<option value="{{i.category}}">{{i.category}}</option>
+{% endfor %}
+</select></div>
+
+<div class="form-group col-md-6">
+<label>Location</label>
+<input type="text" name="loc" class="form-control" placeholder="where you lived" required>
+</div>
+<div class="user-profile-action mb-4 d-flex align-items-center">
+                           <div>
+                                <img src="" id="blah" class="radius-round border" style="max-width:200px;max-height:180px;">
+                            </div>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <div class="user-upload-img-wrap">
+                                <div class="file-upload-wrap file-upload-wrap-2">
+                                    <input type="file" name="npic" class="multi file-upload-input with-preview" multiple maxlength="1" onchange="readURL(this);">
+                                    <span class="file-upload-text" style="color:#3CB371;"><i class="la la-photo mr-2"></i>Upload Photo</span>
+                                </div>
+                            </div>
+                        </div>
+    <script>
+        function readURL(input) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+            $('#blah').attr('src', e.target.result).width(150).height(200);
+            };
+
+         reader.readAsDataURL(input.files[0]);
+         }
+        }
+    </script>
+</div>
+</div>
+<div class="form-group col-md-6">
+</div>
+</div>
+<div class="card">
+<div class="pro-head">
+<h3 class="pro-title without-border mb-0">Overview</h3>
+</div>
+<div class="pro-body">
+<div class="row">
+<div class="form-group col-md-12">
+<textarea class="form-control" name="over" rows="10" required></textarea>
+</div>
+</div>
+</div>
+</div>
+<div class="form-row">
+<div class="col-md-12 col-xl-4 d-flex">
+<div class="pro-card flex-fill mb-3">
+<div class="pro-head">
+<h3 class="pro-title without-border mb-0">Skills</h3>
+</div>
+<div class="pro-body skill-info">
+<div class="form-row align-items-center skill-cont">
+<div class="form-group col-md-12">
+<input type="text" name="skill1" class="form-control" placeholder="Front End Developer" required>
+</div>
+    <div class="form-group col-md-12">
+<input type="text" name="skill2" class="form-control" placeholder="skills">
+</div>
+    <div class="form-group col-md-12">
+<input type="text" name="skill3" class="form-control" placeholder="skills">
+</div>
+    <div class="form-group col-md-12">
+<input type="text" name="skill4" class="form-control" placeholder="skills">
+</div>
+    <div class="form-group col-md-12">
+<input type="text" name="skill5" class="form-control" placeholder="skills">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-12 col-xl-8">
+<div class="card">
+<div class="pro-head">
+<h3 class="pro-title without-border mb-0">Languages Known</h3>
+</div>
+<div class="pro-body  lang-info">
+<div class="form-row align-items-center lang-cont">
+<div class="form-group col-md-12">
+<input type="text" name="lang1" class="form-control" placeholder="English" required>
+</div>
+    <div class="form-group col-md-12">
+<input type="text" name="lang2" class="form-control" placeholder="languages">
+</div>
+    <div class="form-group col-md-12">
+<input type="text" name="lang3" class="form-control" placeholder="languages">
+</div>
+    <div class="form-group col-md-12">
+<input type="text" name="lang4" class="form-control" placeholder="languages">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="pro-head">
+<h3 class="pro-title without-border mb-0">Experience</h3>
+</div>
+<div class="pro-body div exp-info">
+<div class="exp-info">
+<div class="row exp-cont">
+<div class="form-group col-md-6">
+<label>Title(designation)</label>
+<input type="text" name="extitle" class="form-control" >
+</div>
+<div class="form-group col-md-6">
+<label>Company name</label>
+<input type="text" name="excom" class="form-control" >
+</div>
+<div class="form-group col-md-6">
+<label>Start date</label>
+<input type="text" name="exstart" class="form-control datetimepicker" placeholder="Select Date" >
+</div>
+<div class="form-group col-md-6">
+<label>End Date</label>
+<input type="text" name="exend" class="form-control datetimepicker" placeholder="Select Date" >
+</div>
+<div class="form-group col-md-12">
+<label>Summary</label>
+<textarea class="form-control" name="exsum" rows="5" ></textarea>
+</div>
+</div>
+</div>
+</div>
+
+
+</div>
+<div class="card">
+<div class="pro-head">
+<h3 class="pro-title without-border mb-0">Highest Education</h3>
+</div>
+<div class="pro-body">
+<div class="edu-info">
+<div class="row exp-cont">
+<div class="form-group col-md-6">
+<label>Title</label>
+<input type="text" class="form-control" name="edtitle" placeholder="field of study" required>
+</div>
+<div class="form-group col-md-6">
+<label>University/Institute</label>
+<input type="text" class="form-control" name="eduni" placeholder="university" required>
+</div>
+
+<div class="form-group col-md-6">
+<label>Completed On</label>
+<input type="text" class="form-control datetimepicker" name="edend" placeholder="Select Date" required>
+</div>
+<div class="form-group col-md-12">
+<label>Summary</label>
+<textarea class="form-control" name="edsum" rows="5" required></textarea>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="card">
+<div class="pro-head">
+<h3 class="pro-title without-border mb-0">Social Links</h3>
+</div>
+<div class="pro-body">
+<div class="row">
+    <div class="form-group col-md-6">
+<label>Your Website</label>
+<input type="url"  class="form-control" name="youlink" placeholder="https:/www.yourwebsite.com">
+</div>
+<div class="form-group col-md-6">
+<label>Facebook</label>
+<input type="url" class="form-control" name="link1" placeholder="https:/www.facebook.com">
+</div>
+<div class="form-group col-md-6">
+<label>Twitter</label>
+<input type="url" class="form-control" name="link2" placeholder="https:/www.twitter.com">
+</div>
+<div class="form-group col-md-6">
+<label>LinkedIn</label>
+<input type="url" class="form-control" name="link3" placeholder="https:/www.linkedin.com">
+</div>
+<div class="form-group col-md-6">
+<label>Instagram</label>
+<input type="url" class="form-control" name="link4" placeholder="https:/www.instagram.com">
+</div>
+</div>
+</div>
+</div>
+<div class="btn-box mt-4">
+    <button type="submit" class="theme-btn border-0"><i class="la la-plus"></i> Submit Your Resume</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+
+<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'js/jquery-ui.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'js/isotope-3.0.6.min.js' %}"></script>
+<script src="{% static 'js/chosen.min.js' %}"></script>
+<script src="{% static 'js/chart.js' %}"></script>
+<script src="{% static 'js/line-chart.js' %}"></script>
+<script src="{% static 'js/doughutchart.js' %}"></script>
+<script src="{% static 'js/moment.min.js' %}"></script>
+<script src="{% static 'js/daterangepicker.js' %}"></script>
+<script src="{% static 'js/purecounter.js' %}"></script>
+<script src="{% static 'js/progresscircle.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
+
+<script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>
+
+<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+
+<script src="{% static 'assets/plugins/select2/js/select2.min.js' %}"></script>
+
+<script src="{% static 'assets/plugins/theia-sticky-sidebar/ResizeSensor.js' %}"></script>
+<script src="{% static 'assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js' %}"></script>
+
+<script src="{% static 'assets/js/moment.min.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap-datetimepicker.min.js' %}"></script>
+
+<script src="{% static 'assets/js/profile-settings.js' %}"></script>
+
+<script src="{% static 'assets/js/script.js' %}"></script>
+{% endblock content %}

@@ -1,0 +1,181 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+{% load static %}
+<div class="dashboard-content-wrap">
+    <div class="container-fluid">
+
+ <div class="col-md-20">
+<div class="page-title">
+<div class="row">
+<div class="col-md-6">
+<h3>Post A Project</h3>
+</div>
+</div>
+</div>
+     {% for message in messages %}
+                                <br><div class="row">
+                                    <div class="col-lg-0.5"></div>
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="alert col-lg-11">
+                                 <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                                 <strong></strong>{{ message }}
+                                 </div>
+                                <div class="col-lg-0.5"></div>
+                            </div>
+                        {% endfor %}
+<div class="row">
+<div class="col-md-12 col-lg-12">
+<div class="select-project mb-4">
+<form action="/pending-projects" method="post">
+    {% csrf_token %}
+<div class="title-box widget-box">
+
+<div class="title-content">
+<div class="title-detail">
+<h3>Project Name</h3>
+<div class="form-group mb-0">
+<input type="text" name="ptitle" class="form-control" placeholder="Enter Project title" required>
+</div>
+</div>
+</div>
+
+<div class="title-content">
+<div class="title-detail">
+<h3>Category Type</h3>
+<div class="form-group mb-0">
+<select class="form-control select" name="pcategory" required>
+{% for i in category %}
+<option value="{{i.category}}">{{i.category}}</option>
+{% endfor %}
+</select>
+</div>
+</div>
+</div>
+
+
+<div class="row">
+ <div class="form-group col-md-4">
+<label>Currency</label>
+<select class="form-control select" name="pcurrency" required>
+<option value="₹">₹Rupees</option>
+<option value="$">$Dollar</option>
+</select>
+</div>
+
+<div class="form-group col-md-4">
+<label>Minimum Rate</label>
+<input type="text" class="form-control" placeholder="$50" name="pmin" required>
+</div>
+
+<div class="form-group col-md-4">
+<label>Maximum Rate</label>
+<input type="text" class="form-control" placeholder="$50" name="pmax" required>
+</div>
+</div>
+
+
+<div class="row">
+<div class="col-md-12">
+<div class="pro-card flex-fill mb-3">
+<div class="pro-head">
+<h4 class="pro-title without-border mb-0">Skills required for your project</h4>
+</div>
+<div class="pro-body skill-info">
+<div class="form-row align-items-center skill-cont">
+<div class="form-group col-md-12">
+<input type="text" name="skill1" class="form-control" placeholder="Front End Developer" required>
+</div>
+    <div class="form-group col-md-12">
+<input type="text" name="skill2" class="form-control" placeholder="skills">
+</div>
+    <div class="form-group col-md-12">
+<input type="text" name="skill3" class="form-control" placeholder="skills">
+</div>
+    <div class="form-group col-md-12">
+<input type="text" name="skill4" class="form-control" placeholder="skills">
+</div>
+    <div class="form-group col-md-12">
+<input type="text" name="skill5" class="form-control" placeholder="skills">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="title-content">
+<div class="title-detail">
+<h3>Job will Start On</h3>
+<div class="row">
+<div class="col-md-4">
+<div class="filter-widget mb-0" id="period_date" data-model-name>
+<div class="cal-icon">
+<input type="text" class="form-control datetimepicker" placeholder="Select Date" name="pdate" required>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="title-content pb-0">
+<div class="title-detail">
+<h3>Write Description of Projects </h3>
+<div class="form-group mb-0">
+<textarea class="form-control summernote" rows="5" name="pdescription" required></textarea>
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12 text-end">
+<div class="btn-item">
+<button type="submit" class="btn next-btn" style="background-color:#299e5d;color:white;">Submit</button>
+</div>
+</div>
+</div>
+    </div>
+    </form>
+</div>
+
+</div>
+
+
+</div>
+</div>
+</div>
+
+<script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>
+
+<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+
+<script src="{% static 'assets/plugins/select2/js/select2.min.js' %}"></script>
+
+<script src="{% static 'assets/js/profile-settings.js' %}"></script>
+
+<script src="{% static 'assets/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.js' %}"></script>
+
+<script src="{% static 'assets/js/moment.min.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap-datetimepicker.min.js' %}"></script>
+
+
+<script src="{% static 'assets/js/script.js' %}"></script>
+
+
+<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'js/jquery-ui.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'js/isotope-3.0.6.min.js' %}"></script>
+<script src="{% static 'js/chosen.min.js' %}"></script>
+<script src="{% static 'js/chart.js' %}"></script>
+<script src="{% static 'js/line-chart.js' %}"></script>
+<script src="{% static 'js/doughutchart.js' %}"></script>
+<script src="{% static 'js/moment.min.js' %}"></script>
+<script src="{% static 'js/purecounter.js' %}"></script>
+<script src="{% static 'js/progresscircle.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
+
+{% endblock content %}

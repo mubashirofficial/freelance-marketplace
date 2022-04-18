@@ -1,0 +1,199 @@
+{% extends 'index.html' %}
+{% block content %}
+{% load static %}
+
+<div class="breadcrumb-bar" >
+<div class="container" >
+<div class="row align-items-center inner-banner">
+<div class="col-md-12 col-12 text-center">
+<h2 class="breadcrumb-title" >Preview Profile</h2>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="content">
+<div class="container">
+<div class="row">
+<div class="col-md-12">
+<div class="profile">
+<div class="profile-box">
+<div class="provider-widget">
+<div class="pro-info-left">
+<div class="provider-img"><img src="{{r.userimg.url}}" alt="User"></div>
+<div class="profile-info"><br>
+<h2 class="profile-title">{{r.fullname}}</h2>
+<p class="profile-position">{{r.designation}}</p>
+</div>
+</div>
+<div class="pro-info-right profile-inf">
+<a class="btn profile-edit-btn" href="/edit-resume" style="background-color:#299e5d;color:white;border:none;">Edit Resume</a>
+</div>
+</div>
+</div>
+<div class="profile-list">
+<ul>
+<li>
+<span class="cont bg-blue">22</span>
+<strong class="proj-title"> Completed Projects</strong>
+</li>
+<li>
+<span class="cont bg-red">5</span>
+<strong class="proj-title"> Ongoing Projects</strong>
+</li>
+<li>
+<span class="cont bg-violet">89%</span>
+<strong class="proj-title"> Recommended</strong>
+</li>
+<li>
+<span class="cont bg-yellow">12</span>
+<strong class="proj-title"> Rehired</strong>
+</li>
+<li>
+<span class="cont bg-pink">48</span>
+<strong class="proj-title"> Clients</strong>
+</li>
+<li>
+<span class="cont bg-navy">5</span>
+<strong class="proj-title"> Feedbacks</strong>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-8 col-md-12">
+<div class="pro-view">
+
+<nav class="provider-tabs mb-4">
+<ul class="nav nav-tabs nav-tabs-solid nav-justified">
+<li class="nav-item">
+<a class="nav-link" href="#overview">
+<img src="{% static 'assets/img/icon/tab-icon-01.png' %}" height="25" alt="User Image">
+<p class="bg-red">Overview</p>
+</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#experience">
+<img src="{% static 'assets/img/icon/tab-icon-03.png' %}" height="25" alt="User Image">
+<p class="bg-violet">Experience</p>
+</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#education">
+<img src="{% static 'assets/img/icon/tab-icon-04.png' %}" height="25" alt="User Image">
+<p class="bg-yellow">Education</p>
+</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#skill">
+<img src="{% static 'assets/img/icon/tab-icon-05.png' %}" height="25" alt="User Image">
+<p class="bg-pink">Skills</p>
+</a>
+</li>
+</ul>
+</nav>
+
+
+<div class="pro-post widget-box" id="overview">
+<h3 class="pro-title">Overview</h3>
+<div class="pro-content">
+<p>{{r.overview}}</p>
+</div>
+</div>
+
+
+<div class="pro-post project-widget widget-box" id="experience">
+<h3 class="pro-title">Experience</h3>
+<div class="pro-content">
+<div class="widget-list mb-0">
+<ul class="clearfix">
+<li>
+<h4>{{r.extitle}}</h4>
+<h5>{{r.excompany}} {{r.exstart}} - {{r.exend}}</h5>
+<p>{{r.exsummary}}</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div class="pro-post project-widget widget-box" id="education">
+<h3 class="pro-title">Highest Educational Completed</h3>
+<div class="pro-content">
+<div class="widget-list mb-0">
+<ul class="clearfix">
+<li>
+<h4>{{r.edtitle}}</h4>
+<h5>{{r.eduniversity}} {{r.edend}}</h5>
+<p>{{r.edsummary}}</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div class="pro-post project-widget widget-box" id="skill">
+<h3 class="pro-title">Technical Skills</h3>
+<div class="pro-content">
+<div class="tags">
+<span class="badge badge-pill badge-skills">+ {{r.skill1}}</span>
+<span class="badge badge-pill badge-skills">+ {{r.skill2}}</span>
+<span class="badge badge-pill badge-skills">+ {{r.skill3}}</span>
+<span class="badge badge-pill badge-skills">+ {{r.skill4}}</span>
+    <span class="badge badge-pill badge-skills">+ {{r.skill5}}</span>
+</div>
+</div>
+</div>
+
+
+</div>
+</div>
+
+<div class="col-lg-4 col-md-12 sidebar-right theiaStickySidebar">
+<div class="pro-post widget-box language-widget">
+<h4 class="pro-title">Language Skills</h4>
+<ul>
+<li>{{r.lang1}}
+</li>
+<li>{{r.lang2}}
+</li>
+<li>{{r.lang3}}
+</li>
+    <li>{{r.lang4}}
+</li>
+</ul>
+</div>
+<div class="pro-post widget-box about-widget">
+<h4 class="pro-title mb-0">ABOUT ME</h4>
+<ul class="latest-posts pro-content">
+<li><p>Gender</p><h6>{{r.gender}}</h6></li>
+<li><p>Category</p><h6>{{r.category}}</h6></li>
+<li><p>Location</p><h6>{{r.location}}</h6></li>
+</ul>
+</div>
+
+<div class="pro-post category-widget">
+<div class="widget-title-box">
+<h4 class="pro-title">SOCIAL LINKS</h4>
+</div>
+<ul class="latest-posts pro-content">
+<li><a href="{{r.mylink}}">{{r.mylink}}</a></li>
+<li><a href="{{r.link1}}">{{r.slink1}}</a></li>
+<li><a href="{{r.link1}}">{{r.slink2}}</a></li>
+<li><a href="{{r.link1}}"> {{r.slink3}}</a></li>
+<li><a href="{{r.link1}}"> {{r.slink4}}</a></li>
+</ul>
+</div>
+
+</div>
+
+</div>
+</div>
+</div>
+
+{% endblock content %}

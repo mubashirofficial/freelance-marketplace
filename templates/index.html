@@ -1,0 +1,730 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+<title>BidLance</title>
+
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:100,300,400,500,700,900&amp;display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="{% static 'assets/img/favicon1.png' %}" type="image/x-icon">
+
+<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+
+<link rel="stylesheet" href="{% static 'assets/plugins/fontawesome/css/fontawesome.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/plugins/fontawesome/css/all.min.css' %}">
+
+<link rel="stylesheet" href="{% static 'assets/css/owl.carousel.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/owl.theme.default.min.css' %}">
+
+<link rel="stylesheet" href="{% static 'assets/plugins/select2/css/select2.min.css' %}">
+
+<link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/line-awesome.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/daterangepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
+    <link rel="stylesheet" href="{% static 'css/chosen.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+<body class="home-page">
+
+<div class="main-wrapper">
+
+   {% if request.user.is_authenticated %}
+<header class="header-area header-desktop">
+    <div class="header-menu-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="menu-full-width">
+                        <div class="logo">
+                            <a href="/index"><img src="{% static 'assets/img/mylogo.png' %}" alt="logo"></a>
+                        </div><!-- end logo -->
+                        <div class="main-menu-content">
+                            <nav>
+                                <ul>
+                                    <li><a href="/index">Home</a></li>
+                                    <li><a href="/projects">Projects</a></li>
+                                    <li><a href="/freelancers">Freelancers</a></li>
+                                    <li><a href="/contact-us">Contact</a></li>
+                                    <li><a href="/blog">Blog</a></li>
+                                </ul>
+                            </nav>
+                        </div><!-- end main-menu-content -->
+                        <div class="logo-right-content">
+                            <div class="header-action-button d-flex align-items-center">
+                                <div class="notification-wrap d-flex align-items-center">
+                                    <div class="notification-item mr-3">
+                                        <div class="dropdown">
+                                            <button class="notification-btn dropdown-toggle" type="button" id="notificationDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="la la-bell"></i>
+                                                <span class="quantity"></span>
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="notificationDropdownMenu">
+                                                <div class="mess-dropdown">
+                                                    <div class="mess__title">
+                                                        <h4 class="widget-title d-flex align-items-center justify-content-between">Notifications<a href="/delete-notifi" class="font-size-12 color-text-3">Mark all as read</a></h4>
+                                                    </div><!-- end mess__title -->
+                                                    <div class="mess__body">
+                                                           {% for i in notification %}
+                                                            <div class="mess__item">
+                                                                <div class="icon-element">
+                                                                    <i class="la la-bolt"></i>
+                                                                </div>
+                                                                <div >
+                                                                    <span class="time" style="color:#299e5d;">{{i.opuser}} {{i.notification}}</span>
+                                                                    <p class="text">{{i.ptitle}}</p>
+                                                                </div>
+                                                            </div><!-- end mess__item -->
+                                                        {% endfor %}
+                                                    </div><!-- end mess__body -->
+                                                    <div class="mess__item border-bottom-0 text-center">
+                                                    </div><!-- end mess__item -->
+                                                </div><!-- end mess-dropdown -->
+                                            </div><!-- end dropdown-menu -->
+                                        </div><!-- end dropdown -->
+                                    </div>
+                                </div>
+                                <div class="user-action-wrap">
+                                    <div class="notification-item">
+                                        <div class="dropdown">
+                                            <button class="notification-btn dot-status online-status dropdown-toggle" type="button" id="userDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <img src="{{user.userimage.image.url}}">
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="userDropdownMenu">
+                                                <div class="mess-dropdown">
+                                                    <div class="mess__title d-flex align-items-center">
+                                                        <div class="image dot-status online-status">
+                                                            <a href="/dashboard">
+                                                                <img src="{{user.userimage.image.url}}">
+                                                            </a>
+                                                        </div>
+                                                        <div>
+                                                            <h4 class="widget-title font-size-16"><br>
+                                                                <a href="/dashboard">{{user.username}}</a><br>
+                                                                <span class="email">@{{user.email}}</span>
+                                                            </h4>
+
+                                                        </div>
+                                                    </div><!-- end mess__title -->
+                                                    <div class="mess__body">
+                                                        <ul class="list-items">
+                                                            <li class="mb-0">
+                                                                <a href="/dashboard" class="d-block">
+                                                                    <i class="la la-user"></i> Account
+                                                                </a>
+                                                            </li>
+                                                            <li class="mb-0">
+                                                                <a href="/post-a-project" class="d-block">
+                                                                    <i class="la la-plus"></i> Post a Project
+                                                                </a>
+                                                            </li>
+                                                            {% if user.approvedresume %}
+                                                            <li class="mb-0">
+                                                                <a href="/edit-resume" class="d-block">
+                                                                    <i class="la la-plus"></i>Edit Resume
+                                                                </a>
+                                                            </li>
+                                                            {% else %}
+                                                            <li class="mb-0">
+                                                                <a href="/add-freelancer-resume" class="d-block">
+                                                                    <i class="la la-plus"></i>Add Freelancer Resume
+                                                                </a>
+                                                            </li>
+                                                            {% endif %}
+                                                            <li class="mb-0">
+                                                                <a href="/settings" class="d-block">
+                                                                    <i class="la la-gear"></i> Settings
+                                                                </a>
+                                                            </li>
+                                                            <li class="mb-0">
+                                                                <div class="section-block mt-2 mb-2"></div>
+                                                            </li>
+                                                            <li class="mb-0">
+                                                                <a href="/logout" class="d-block">
+                                                                    <i class="la la-power-off"></i> Logout
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div><!-- end mess__body -->
+                                                </div><!-- end mess-dropdown -->
+                                            </div><!-- end dropdown-menu -->
+                                        </div><!-- end dropdown -->
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            <div class="menu-toggler d-flex align-items-center">
+                                <div class="side-menu-open">
+                                    <span class="menu__bar"></span>
+                                    <span class="menu__bar"></span>
+                                    <span class="menu__bar"></span>
+                                </div><!-- end side-menu-open -->
+                                <div class="user-menu-open">
+                                    <a href="/dashboard" style="color:black;"><i class="la la-user"></i></a>
+                                </div><!-- end user-menu-open -->
+                            </div>
+                        </div><!-- end logo-right-content -->
+                    </div><!-- end menu-full-width -->
+                </div><!-- end col-lg-12 -->
+            </div><!-- end row -->
+        </div><!-- end container-fluid -->
+    </div><!-- end header-menu-wrapper -->
+    <div class="side-nav-container">
+        <div class="humburger-menu">
+            <div class="humburger-menu-lines side-menu-close"></div><!-- end humburger-menu-lines -->
+        </div><!-- end humburger-menu -->
+        <div class="side-menu-wrap">
+            <ul class="side-menu-ul">
+                <li><a href="/index">Home</a></li>
+                <li><a href="/projects">Projects</a></li>
+                <li><a href="/freelancers">Freelancers</a></li>
+                <li><a href="/contact-us">Contact</a></li>
+                <li><a href="/blog">Blog</a></li>
+            </ul>
+        </div><!-- end side-menu-wrap -->
+    </div><!-- end side-nav-container -->
+</header>
+
+{% block content %}
+<div class="section home-banner row-middle">
+<div class="container">
+<div class="row align-items-center">
+<div class="col-md-8 col-lg-7">
+
+<div class="banner-content">
+
+<h1>Get the perfect <span class="orange-text">Projects & Developers</span></h1>
+ <div>
+   <div class="main-search-input">
+
+                            <div class="main-search-input-btn">
+                                <a href="/projects" class="button theme-btn line-height-50">Explore Projects</a>
+                            </div>&nbsp;&nbsp;<!-- end main-search-input-btn -->
+                                <div class="main-search-input-btn">
+                                <a href="/freelancers" class="button theme-btn line-height-50">Hire Freelancers</a>
+                            </div><!-- end main-search-input-btn -->
+                        </div>
+  </div>
+
+</div>
+
+</div>
+<div class="col-md-4 col-lg-5">
+<div class="banner-img">
+<img src="{% static 'assets/img/banner.png' %}" class="img-fluid" alt="banner">
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<section class="card-area section-bg padding-top-100px padding-bottom-100px">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-heading text-center">
+                    <h2 class="sec__title">Latest Projects</h2>
+                </div><!-- end section-heading -->
+            </div><!-- end col-lg-12 -->
+        </div><!-- end row -->
+        <div class="row mt-5">
+            <div class="col-lg-12">
+                <div class="job-content">
+                    {% for i in project %}
+                    <div class="job-card job-card-layout">
+                        <div class="job-card-details d-flex align-items-center justify-content-between">
+                            <div class="card-head d-flex align-items-center">
+                                <div class="company-title-box">
+                                    <p class="card-sub mb-1 font-weight-medium">{{i.date_added}}</p>
+                                    <h4 class="card-title mb-1"><a href=""> {{i.title}}</a> </h4>
+                                    <p class="card-sub">
+                                        <span class="mr-2"><i class="la la-user color-text-2"></i>{{i.user}}</span>
+                                        <span class="mr-2"><i class="la la-building-o color-text-2"></i> {{i.category}}</span>
+                                        <span class="mr-2"><i class="la la-clock-o color-text-2"></i> {{i.jobstart}}</span>
+                                        <h4><span> {{i.currency}}{{i.minrate}} - {{i.currency}}{{i.maxrate}} </span></h4>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="btn-box">
+                                <a href="{% url 'project-details' i.slug %}" class="theme-btn">Apply Now</a>
+                            </div>
+                        </div>
+                    </div><!-- end job-card -->
+                    {% endfor %}
+                </div><!-- end job-content -->
+            </div><!-- end col-lg-12 -->
+        </div><!-- end row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="btn-box text-center mt-4">
+                    <a href="/projects" class="theme-btn">Browse all Jobs</a>
+                </div>
+            </div><!-- end col-lg-12 -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- end card-area -->
+
+
+<section class="section projects">
+<div class="container">
+<div class="row">
+<div class="col-12 col-md-12 mx-auto">
+<div class="section-header text-center">
+<div class="section-line"></div>
+<h2 class="header-title">Get Inspired<br> By Development Projects</h2>
+<p>High Performing Solutions To Your</p>
+</div>
+</div>
+</div>
+<div class="row">
+
+<div class="col-lg-3 col-md-6 col-sm-6">
+<div class="project-item">
+<div class="project-img">
+<a href=""><img src="{% static 'assets/img/project/project-01.jpg' %}" alt="" class="img-fluid"></a>
+</div>
+<div class="d-flex justify-content-between align-items-center">
+<div class="project-content">
+<h5>Graphics & Design</h5>
+</div>
+<div class="pro-icon">
+<div class="project-icon">
+</div>
+</div>
+<div class="project-content">
+<h4>211</h4>
+<h5>Developers</h5>
+</div>
+</div>
+</div>
+</div>
+<div class="col-lg-3 col-md-6 col-sm-6">
+<div class="project-item">
+<div class="project-img">
+<a href=""><img src="{% static 'assets/img/project/project-02.jpg' %}" alt="" class="img-fluid"></a>
+</div>
+<div class="d-flex justify-content-between align-items-center">
+<div class="project-content">
+<h5>Digital Marketing</h5>
+</div>
+<div class="pro-icon">
+<div class="project-icon">
+</div>
+</div>
+<div class="project-content">
+<h4>303</h4>
+<h5>Developers</h5>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="col-lg-3 col-md-6 col-sm-6">
+<div class="project-item">
+<div class="project-img">
+<a href=""><img src="{% static 'assets/img/project/project-03.jpg' %}" alt="" class="img-fluid"></a>
+</div>
+<div class="d-flex justify-content-between align-items-center">
+<div class="project-content">
+<h5>Writing & Translation</h5>
+</div>
+<div class="pro-icon">
+<div class="project-icon">
+</div>
+</div>
+<div class="project-content">
+<h4>58</h4>
+<h5>Developers</h5>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="col-lg-3 col-md-6 col-sm-6">
+<div class="project-item">
+<div class="project-img">
+<a href=""><img src="{% static 'assets/img/project/project-04.jpg' %}" alt="" class="img-fluid"></a>
+</div>
+<div class="d-flex justify-content-between align-items-center">
+<div class="project-content">
+<h5>Video & Animation</h5>
+</div>
+<div class="pro-icon">
+<div class="project-icon">
+</div>
+</div>
+<div class="project-content">
+<h4>203</h4>
+<h5>Developers</h5>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="col-lg-3 col-md-6 col-sm-6">
+<div class="project-item">
+<div class="project-img">
+<a href=""><img src="{% static 'assets/img/project/project-01.jpg' %}" alt="" class="img-fluid"></a>
+</div>
+<div class="d-flex justify-content-between align-items-center">
+<div class="project-content">
+<h5>Music & Audio</h5>
+</div>
+<div class="pro-icon">
+<div class="project-icon">
+</div>
+</div>
+<div class="project-content">
+<h4>145</h4>
+<h5>Developers</h5>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="col-lg-3 col-md-6 col-sm-6">
+<div class="project-item">
+<div class="project-img">
+<a href=""><img src="{% static 'assets/img/project/project-04.jpg' %}" alt="" class="img-fluid"></a>
+</div>
+<div class="d-flex justify-content-between align-items-center">
+<div class="project-content">
+<h5>Programming & Tech</h5>
+</div>
+<div class="pro-icon">
+<div class="project-icon">
+</div>
+</div>
+<div class="project-content">
+<h4>101</h4>
+<h5>Developers</h5>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="col-lg-3 col-md-6 col-sm-6">
+<div class="project-item">
+<div class="project-img">
+<a href=""><img src="{% static 'assets/img/project/project-03.jpg' %}" alt="" class="img-fluid"></a>
+</div>
+<div class="d-flex justify-content-between align-items-center">
+<div class="project-content">
+<h5>Data</h5>
+</div>
+<div class="pro-icon">
+<div class="project-icon">
+</div>
+</div>
+<div class="project-content">
+<h4>68</h4>
+<h5>Developers</h5>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="col-lg-3 col-md-6 col-sm-6">
+<div class="project-item">
+<div class="project-img">
+<a href=""><img src="{% static 'assets/img/project/project-01.jpg' %}" alt="" class="img-fluid"></a>
+</div>
+<div class="d-flex justify-content-between align-items-center">
+<div class="project-content">
+<h5>Buisness</h5>
+</div>
+<div class="pro-icon">
+<div class="project-icon">
+</div>
+</div>
+<div class="project-content">
+<h4>30</h4>
+<h5>Developers</h5>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="row">
+<div class="col-md-12 text-center">
+<div class="see-all">
+<a href="/Projects" class=" all-btn">SEE ALL PROJECT</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+<section class="section subscribe">
+<div class="container">
+<div class="row align-items-center">
+<div class="col-md-4">
+<img src="{% static 'assets/img/subscribe.png' %}" class="img-fluid" alt="subscribe">
+</div>
+<div class="col-md-6">
+<h3>Subscribe To Get Discounts, Updates & More</h3>
+<p>Monthly product updates, industry news and more!</p>
+<form action="#" method="POST">
+<div class="form-inner">
+<div class="input-group">
+<input type="email" class="form-control" placeholder="Enter Email Address">
+<button class="btn btn-primary sub-btn" type="submit">Submit</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</section>
+
+
+
+<section class="testimonial-area padding-top-100px padding-bottom-100px text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-heading">
+                    <h2 class="sec__title">Kind Words From Our <br> Developers</h2>
+                    <p class="sec__desc">
+                        Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit <br>
+                        facere possimus, omnis voluptas assumenda est, omnis
+                    </p>
+                </div><!-- end section-heading -->
+            </div><!-- end col-lg-12 -->
+        </div><!-- end row -->
+        <div class="row mt-5">
+            <div class="col-lg-12">
+                <div class="testimonial-carousel carousel-item-wrap">
+                    <div class="testimonial-item">
+                        <div class="testi-content mb-3">
+                            <img src="{% static 'images/small-team2.jpg' %}" class="testi__img" alt="testimonial image">
+                            <h4 class="tesi__title mt-4">Richards</h4>
+                            <span class="testi__meta">Co-Founder</span>
+                        </div>
+                        <div class="testi-comment">
+                            <p class="testi__desc">
+                                It's Extremely exciting that BidLance has freelancers from all over the world.
+                                One of the best things about BidLance is that while we're sleeping,someone's working
+                            </p>
+                        </div>
+                    </div><!-- end testimonial-item -->
+                    <div class="testimonial-item">
+                        <div class="testi-content mb-3">
+                            <img src="{% static 'assets/img/admin.jpg' %}" class="testi__img" alt="testimonial image">
+                            <h4 class="tesi__title mt-4">Mubashir</h4>
+                            <span class="testi__meta">Founder</span>
+                        </div>
+                        <div class="testi-comment">
+                            <p class="testi__desc">
+                               When you want to create a buisness
+                                bigger, you need a lot of help, That's what BidLance does
+                                BidLance connect the freelancers with employers
+                            </p>
+                        </div>
+                    </div><!-- end testimonial-item -->
+                    <div class="testimonial-item">
+                        <div class="testi-content mb-3">
+                            <img src="{% static 'images/small-team3.jpg' %}" class="testi__img" alt="testimonial image">
+                            <h4 class="tesi__title mt-4">Alex Jhon</h4>
+                            <span class="testi__meta">Co-Founder</span>
+                        </div>
+                        <div class="testi-comment">
+                            <p class="testi__desc">
+                                It's Extremely exciting that BidLance has freelancers from all over the world.
+                                One of the best things about BidLance is that while we're sleeping,someone's working
+                            </p>
+                        </div>
+                    </div><!-- end testimonial-item -->
+                    <div class="testimonial-item">
+                        <div class="testi-content mb-3">
+                            <img src="{% static 'images/small-team1.jpg' %}" class="testi__img" alt="testimonial image">
+                            <h4 class="tesi__title mt-4">Richard Doe</h4>
+                            <span class="testi__meta">Co-Founder</span>
+                        </div>
+                        <div class="testi-comment">
+                            <p class="testi__desc">
+                                It's Extremely exciting that BidLance has freelancers from all over the world.
+                                One of the best things about BidLance is that while we're sleeping,someone's working
+                            </p>
+                        </div>
+                    </div><!-- end testimonial-item -->
+                </div><!-- end testimonial-carousel -->
+            </div><!-- end col-lg-12 -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- end testimonial-area -->
+
+
+<section class="section news">
+<div class="container">
+<div class="row">
+<div class="col-12">
+<div class="section-header text-center">
+<div class="section-line"></div>
+<h2 class="header-title">Feature Blog</h2>
+<p>High Performing Developers To Your</p>
+</div>
+</div>
+</div>
+<div>
+<div class="row blog-grid-row">
+    {% for i in blog %}
+<div class="col-md-4">
+
+<div class="blog grid-blog">
+<div class="blog-image">
+<a href="{% url 'blogdetails' i.slug %}"><img class="img-fluid" src="{{i.bimg.url}}" alt="Post Image"></a>
+</div>
+<div class="blog-content">
+<ul class="entry-meta meta-item">
+<li>
+<div class="post-author">
+<a><img src="{% static 'assets/img/admin.jpg' %}" alt="Post Author"> <span>Bidlance Admin</span></a>
+</div>
+</li>
+<li><i class="far fa-clock"></i>{{i.date_added}}</li>
+</ul>
+<h3 class="blog-title"><a href="{% url 'blogdetails' i.slug %}">{{i.title}}</a></h3>
+</div>
+</div>
+
+</div>
+    {% endfor %}
+</div>
+</div>
+</div>
+</section>
+
+{% endblock content %}
+
+<section class="footer-area padding-top-90px padding-bottom-30px">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 responsive-column">
+                <div class="footer-item">
+                    <div class="logo">
+                        <a href="index.html" class="foot-logo"><img src="{% static 'assets/img/mylogo.png' %}" alt="logo"></a>
+                        <p class="footer__desc line-height-30 mt-3">
+                            Kanjirapuza, Pincode-678591, India. <br>
+                            +91 62828-68833 <br>
+                            bidlanceoffical22@gmail.com
+                        </p>
+                        <h4 class="footer__title mt-4">Connect with us</h4>
+                        <ul class="social-profile">
+                            <li>
+                                <a href="">
+                                    <i class="la la-facebook"></i>
+                                </a>
+                            </li>
+                            <li>
+                               <a href="">
+                                    <i class="la la-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="la la-instagram"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div><!-- end logo -->
+                </div><!-- end footer-item -->
+            </div><!-- end col-lg-4 -->
+            <div class="col-lg-2 responsive-column">
+                <div class="footer-item">
+                    <h4 class="footer__title">General</h4>
+                    <ul class="list-items">
+                        <li><a href="/contact-us">Contact</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                    </ul>
+                </div><!-- end footer-item -->
+            </div><!-- end col-lg-2 -->
+            <div class="col-lg-2 responsive-column">
+                <div class="footer-item">
+                    <h4 class="footer__title">MyAccount</h4>
+                    <ul class="list-items">
+                        <li><a href="/dashboard">Dashboard</a></li>
+                        <li><a href="/messages">Messages</a></li>
+                        <li><a href="/settings">Settings</a></li>
+                        <li><a href="/add-freelancer-resume">Add Freelancer Profile</a></li>
+                    </ul>
+                </div><!-- end footer-item -->
+            </div><!-- end col-lg-2 -->
+            <div class="col-lg-2 responsive-column">
+                <div class="footer-item">
+                    <h4 class="footer__title">Helpful Links</h4>
+                    <ul class="list-items">
+                        <li><a href="/projects">projects</a></li>
+                        <li><a href="">Settings</a></li>
+                        <li><a href="">Add Freelancer Profile</a></li>
+                    </ul>
+                </div><!-- end footer-item -->
+            </div>
+        </div><!-- end row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="copy-right margin-top-50px padding-top-30px">
+                    <p class="copy__desc">
+                        Copyright &copy;2022 BidLance Inc. Made with
+                        <span class="la la-heart-o"></span> by <a href="/">Mubashir</a>
+                    </p>
+                </div><!-- end copy-right -->
+            </div><!-- end col-lg-12 -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- end footer-area -->
+</div>
+
+<!-- start back-to-top -->
+<div id="back-to-top">
+    <i class="la la-angle-up" title="Go top"></i>
+</div>
+<!-- end back-to-top -->
+
+<script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>
+
+<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+
+<script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+
+<script src="{% static 'assets/plugins/select2/js/select2.min.js' %}"></script>
+
+<script src="{% static 'assets/js/slick.js' %}"></script>
+
+<script src="{% static 'assets/js/script.js' %}"></script>
+
+
+<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'js/jquery-ui.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'js/isotope-3.0.6.min.js' %}"></script>
+<script src="{% static 'js/chosen.min.js' %}"></script>
+<script src="{% static 'js/chart.js' %}"></script>
+<script src="{% static 'js/line-chart.js' %}"></script>
+<script src="{% static 'js/doughutchart.js' %}"></script>
+<script src="{% static 'js/moment.min.js' %}"></script>
+<script src="{% static 'js/daterangepicker.js' %}"></script>
+<script src="{% static 'js/purecounter.js' %}"></script>
+<script src="{% static 'js/progresscircle.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
